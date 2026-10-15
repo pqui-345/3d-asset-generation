@@ -1,0 +1,102 @@
+{
+  "BAGEL_WITH_CHEESE": {
+    "chamfer_distance": 3.656617296916811,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f_score": 0.0,
+    "threshold": 0.01,
+    "num_samples": 50000,
+    "pred_vertices": 120002,
+    "gt_vertices": 8238
+  },
+  "Dog": {
+    "chamfer_distance": 1.2862317313818008,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f_score": 0.0,
+    "threshold": 0.01,
+    "num_samples": 50000,
+    "pred_vertices": 120007,
+    "gt_vertices": 55986
+  },
+  "Racoon": {
+    "chamfer_distance": 1.0730652551686866,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f_score": 0.0,
+    "threshold": 0.01,
+    "num_samples": 50000,
+    "pred_vertices": 115001,
+    "gt_vertices": 67248
+  },
+  "Razer_BlackWidow_Ultimate_2014_Mechanical_Gaming_Keyboard": {
+    "chamfer_distance": 0.6278558086020092,
+    "precision": 0.00714,
+    "recall": 0.03664,
+    "f_score": 0.011951100932044082,
+    "threshold": 0.01,
+    "num_samples": 50000,
+    "pred_vertices": 101529,
+    "gt_vertices": 17296
+  },
+  "Hefty_Waste_Basket_Decorative_Bronze_85_liter": {
+    "chamfer_distance": 0.9615920554540438,
+    "precision": 0.00278,
+    "recall": 0.00824,
+    "f_score": 0.004157386532147128,
+    "threshold": 0.01,
+    "num_samples": 50000,
+    "pred_vertices": 120001,
+    "gt_vertices": 14915
+  },
+  "Connect_4_Launchers": {
+    "chamfer_distance": 0.5900759020009663,
+    "precision": 0.01318,
+    "recall": 0.02372,
+    "f_score": 0.01694469372101709,
+    "threshold": 0.01,
+    "num_samples": 50000,
+    "pred_vertices": 36105,
+    "gt_vertices": 1444
+  },
+  "Timberland_Womens_Earthkeepers_Classic_Unlined_Boat_Shoe": {
+    "chamfer_distance": 0.8670849165927358,
+    "precision": 0.00452,
+    "recall": 0.02048,
+    "f_score": 0.007405567970377728,
+    "threshold": 0.01,
+    "num_samples": 50000,
+    "pred_vertices": 58571,
+    "gt_vertices": 8663
+  },
+  "Cole_Hardware_School_Bell_Solid_Brass_38": {
+    "chamfer_distance": 3.2480220191844364,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f_score": 0.0,
+    "threshold": 0.01,
+    "num_samples": 50000,
+    "pred_vertices": 120004,
+    "gt_vertices": 4514
+  },
+  "Down_To_Earth_Orchid_Pot_Ceramic_Lime": {
+    "chamfer_distance": 6.142961443270339,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f_score": 0.0,
+    "threshold": 0.01,
+    "num_samples": 50000,
+    "pred_vertices": 120004,
+    "gt_vertices": 12545
+  },
+  "LEGO_Star_Wars_Advent_Calendar": {
+    "chamfer_distance": 0.621253976823465,
+    "precision": 0.00826,
+    "recall": 0.0352,
+    "f_score": 0.013380211658121926,
+    "threshold": 0.01,
+    "num_samples": 50000,
+    "pred_vertices": 119989,
+    "gt_vertices": 1603
+  }
+}

@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Template Catalog — core_100</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { font-size: 24px; margin-bottom: 5px; color: #fff; }
+.subtitle { color: #aaa; margin-bottom: 20px; font-size: 14px; }
+.controls { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+.controls input, .controls select { padding: 8px 12px; border: 1px solid #444; border-radius: 6px; background: #16213e; color: #e0e0e0; font-size: 14px; }
+.controls input { flex: 1; min-width: 200px; }
+.controls select { min-width: 150px; }
+.controls .count { color: #888; font-size: 13px; margin-left: auto; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.card { background: #16213e; border-radius: 10px; overflow: hidden; border: 1px solid #2a2a4a; transition: transform 0.15s, box-shadow 0.15s; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+.card .thumb { width: 100%; aspect-ratio: 1; background: #23233a; display: flex; align-items: center; justify-content: center; }
+.card .thumb img { width: 100%; height: 100%; object-fit: contain; }
+.card .thumb .no-thumb { color: #555; font-size: 40px; }
+.card .info { padding: 10px 12px; }
+.card .info .name { font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card .info .meta { font-size: 11px; color: #888; margin-top: 4px; }
+.card .info .meta span { margin-right: 10px; }
+.card .info .cat-tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 4px; background: #0f3460; color: #8ab4f8; margin-top: 5px; }
+.card .info .id-tag { font-size: 10px; color: #555; }
+.card.status-KEEP { border-color: #2e7d32; }
+.card.status-REMOVE { border-color: #c62828; opacity: 0.6; }
+.stats { margin-top: 30px; padding: 15px; background: #16213e; border-radius: 8px; font-size: 13px; color: #aaa; }
+.stats strong { color: #fff; }
+</style>
+</head>
+<body>
+
+<h1>Template Catalog — core_100</h1>
+<p class="subtitle">Chọn 20-40 template phù hợp cho web demo giáo dục. Điền KEEP / REMOVE vào cột <code>keep_for_education</code> trong file CSV.</p>
+
+<div class="controls">
+  <input type="text" id="search" placeholder="Tìm theo tên hoặc ID..." oninput="filterGallery()">
+  <select id="catFilter" onchange="filterGallery()">
+    <option value="">Tất cả danh mục</option>
+        <option value="educational">educational</option>
+    <option value="furniture">furniture</option>
+    <option value="unknown">unknown</option>
+  </select>
+  <select id="statusFilter" onchange="filterGallery()">
+    <option value="">Tất cả trạng thái</option>
+    <option value="KEEP">KEEP</option>
+    <option value="REMOVE">REMOVE</option>
+    <option value="REVIEW">REVIEW</option>
+  </select>
+  <span class="count" id="count">0 / 101</span>
+</div>
+
+<div class="gallery" id="gallery">
+  <div class="card " data-idx="0" data-name="chair" data-id="8476c417" data-cat="furniture" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/8476c4170df24cf5bbe6967222d1a42d.png" alt="chair"></div>
+    <div class="info">
+      <div class="name" title="chair">chair</div>
+      <div class="meta">
+        <span>19,008v</span>
+        <span>14,337f</span>
+        <span>3646.0KB</span>
+      </div>
+      <span class="cat-tag">furniture</span>
+      <span class="id-tag">#8476c417</span>
+    </div>
+  </div>
+  <div class="card " data-idx="1" data-name="medieval punishment" data-id="fc1339e2" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/fc1339e225b7408caec82681be2746c5.png" alt="Medieval Punishment"></div>
+    <div class="info">
+      <div class="name" title="Medieval Punishment">Medieval Punishment</div>
+      <div class="meta">
+        <span>5,018v</span>
+        <span>4,672f</span>
+        <span>1336.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#fc1339e2</span>
+    </div>
+  </div>
+  <div class="card " data-idx="2" data-name="bull sculpin head (enophrys taurina)" data-id="7b56f2bd" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/7b56f2bdfd2845588f6bde0c5362fd0d.png" alt="Bull sculpin head (Enophrys taurina)"></div>
+    <div class="info">
+      <div class="name" title="Bull sculpin head (Enophrys taurina)">Bull sculpin head (Enophrys taurina)</div>
+      <div class="meta">
+        <span>784,271v</span>
+        <span>1,074,221f</span>
+        <span>27907.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#7b56f2bd</span>
+    </div>
+  </div>
+  <div class="card " data-idx="3" data-name="research>mechanisms>systems>mark vi/vii gate" data-id="11102f04" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/11102f046e7846b8b4053bce5779d95c.png" alt="Research>Mechanisms>Systems>Mark VI/VII Gate"></div>
+    <div class="info">
+      <div class="name" title="Research>Mechanisms>Systems>Mark VI/VII Gate">Research>Mechanisms>Systems>Mark VI/VII Gate</div>
+      <div class="meta">
+        <span>379v</span>
+        <span>208f</span>
+        <span>51.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#11102f04</span>
+    </div>
+  </div>
+  <div class="card " data-idx="4" data-name="c6090 praisos: third acropolis" data-id="0712f63f" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/0712f63f7e714e0d8d1247a08ec1f7fe.png" alt="C6090 Praisos: Third Acropolis"></div>
+    <div class="info">
+      <div class="name" title="C6090 Praisos: Third Acropolis">C6090 Praisos: Third Acropolis</div>
+      <div class="meta">
+        <span>2,100v</span>
+        <span>4,018f</span>
+        <span>601.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#0712f63f</span>
+    </div>
+  </div>
+  <div class="card " data-idx="5" data-name="mazda rx7 stylised" data-id="898e9be8" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/898e9be8c8964f6298188a2901216e80.png" alt="Mazda RX7 Stylised"></div>
+    <div class="info">
+      <div class="name" title="Mazda RX7 Stylised">Mazda RX7 Stylised</div>
+      <div class="meta">
+        <span>10,097v</span>
+        <span>5,733f</span>
+        <span>266.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#898e9be8</span>
+    </div>
+  </div>
+  <div class="card " data-idx="6" data-name="biological planet low poly bear 03 2" data-id="14be2940" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/14be2940b43541168e157a7ccfb60560.png" alt="Biological Planet Low Poly Bear 03 2"></div>
+    <div class="info">
+      <div class="name" title="Biological Planet Low Poly Bear 03 2">Biological Planet Low Poly Bear 03 2</div>
+      <div class="meta">
+        <span>28,787v</span>
+        <span>50,180f</span>
+        <span>1151.9KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#14be2940</span>
+    </div>
+  </div>
+  <div class="card " data-idx="7" data-name="espen 3d brain" data-id="fcdfc931" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/fcdfc931f73b4865a4a4005c65fc2afe.png" alt="Espen 3D Brain"></div>
+    <div class="info">
+      <div class="name" title="Espen 3D Brain">Espen 3D Brain</div>
+      <div class="meta">
+        <span>302v</span>
+        <span>108f</span>
+        <span>308.7KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#fcdfc931</span>
+    </div>
+  </div>
+  <div class="card " data-idx="8" data-name="riproduzione di vaso biansato tardoromano" data-id="f5d18e92" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/f5d18e9222814a8697a7902238139be5.png" alt="Riproduzione di vaso biansato tardoromano"></div>
+    <div class="info">
+      <div class="name" title="Riproduzione di vaso biansato tardoromano">Riproduzione di vaso biansato tardoromano</div>
+      <div class="meta">
+        <span>552,001v</span>
+        <span>769,478f</span>
+        <span>20414.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#f5d18e92</span>
+    </div>
+  </div>
+  <div class="card " data-idx="9" data-name="barcelona pavilion (3d demo)" data-id="8c845890" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/8c84589050f94176b03140693388cd8e.png" alt="Barcelona Pavilion (3D Demo)"></div>
+    <div class="info">
+      <div class="name" title="Barcelona Pavilion (3D Demo)">Barcelona Pavilion (3D Demo)</div>
+      <div class="meta">
+        <span>29,459v</span>
+        <span>19,839f</span>
+        <span>2123.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#8c845890</span>
+    </div>
+  </div>
+  <div class="card " data-idx="10" data-name="moasy tree stump" data-id="961ff5e5" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/961ff5e59afa4c34ae7cfa8687f67764.png" alt="Moasy tree stump"></div>
+    <div class="info">
+      <div class="name" title="Moasy tree stump">Moasy tree stump</div>
+      <div class="meta">
+        <span>207,149v</span>
+        <span>69,057f</span>
+        <span>7203.9KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#961ff5e5</span>
+    </div>
+  </div>
+  <div class="card " data-idx="11" data-name="psp little big planet sackboy(hd textures)" data-id="1a6f9114" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/1a6f91147e464a03a212c372cee14120.png" alt="PSP Little Big Planet Sackboy(HD Textures)"></div>
+    <div class="info">
+      <div class="name" title="PSP Little Big Planet Sackboy(HD Textures)">PSP Little Big Planet Sackboy(HD Textures)</div>
+      <div class="meta">
+        <span>1,075v</span>
+        <span>1,376f</span>
+        <span>1386.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#1a6f9114</span>
+    </div>
+  </div>
+  <div class="card " data-idx="12" data-name="petroglyph h20, khatm al melaha, kalba, sharjah" data-id="d51f289c" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/d51f289c57c046d39426ae90a9ace6e8.png" alt="Petroglyph H20, Khatm Al Melaha, Kalba, Sharjah"></div>
+    <div class="info">
+      <div class="name" title="Petroglyph H20, Khatm Al Melaha, Kalba, Sharjah">Petroglyph H20, Khatm Al Melaha, Kalba, Sharjah</div>
+      <div class="meta">
+        <span>780,522v</span>
+        <span>1,076,092f</span>
+        <span>30195.6KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#d51f289c</span>
+    </div>
+  </div>
+  <div class="card " data-idx="13" data-name="scifi revolver 2.0" data-id="837c9fa1" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/837c9fa18e024e8a82293e2145e91fd8.png" alt="Scifi revolver 2.0"></div>
+    <div class="info">
+      <div class="name" title="Scifi revolver 2.0">Scifi revolver 2.0</div>
+      <div class="meta">
+        <span>15,473v</span>
+        <span>20,092f</span>
+        <span>25495.5KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#837c9fa1</span>
+    </div>
+  </div>
+  <div class="card " data-idx="14" data-name="covid map by blocks" data-id="b06f652a" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/b06f652a17c44a0998a93c5c7e2188f8.png" alt="covid map by blocks"></div>
+    <div class="info">
+      <div class="name" title="covid map by blocks">covid map by blocks</div>
+      <div class="meta">
+        <span>43,916v</span>
+        <span>48,024f</span>
+        <span>1421.6KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#b06f652a</span>
+    </div>
+  </div>
+  <div class="card " data-idx="15" data-name="edinburg castle souvenir [photogrammetry]" data-id="924aed0f" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/924aed0fa1cb4ae4a9071a3c49044f14.png" alt="Edinburg Castle souvenir [Photogrammetry]"></div>
+    <div class="info">
+      <div class="name" title="Edinburg Castle souvenir [Photogrammetry]">Edinburg Castle souvenir [Photogrammetry]</div>
+      <div class="meta">
+        <span>110,595v</span>
+        <span>193,305f</span>
+        <span>5801.9KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#924aed0f</span>
+    </div>
+  </div>
+  <div class="card " data-idx="16" data-name="c6673 poussi chamolia" data-id="39d96c58" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/39d96c58470146d5a7cecd91a8989ac9.png" alt="C6673 Poussi Chamolia"></div>
+    <div class="info">
+      <div class="name" title="C6673 Poussi Chamolia">C6673 Poussi Chamolia</div>
+      <div class="meta">
+        <span>2,040v</span>
+        <span>3,900f</span>
+        <span>523.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#39d96c58</span>
+    </div>
+  </div>
+  <div class="card " data-idx="17" data-name="tooth" data-id="5699e6ec" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/5699e6ec5c0f40b1ad0f78264595133d.png" alt="Tooth"></div>
+    <div class="info">
+      <div class="name" title="Tooth">Tooth</div>
+      <div class="meta">
+        <span>3,765v</span>
+        <span>5,952f</span>
+        <span>144.8KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#5699e6ec</span>
+    </div>
+  </div>
+  <div class="card " data-idx="18" data-name="adze holder with haft notch, xcb-105-3699" data-id="ac4cf4a0" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/ac4cf4a0ee1740a08478bc9be83454e9.png" alt="Adze Holder with Haft Notch, XCB-105-3699"></div>
+    <div class="info">
+      <div class="name" title="Adze Holder with Haft Notch, XCB-105-3699">Adze Holder with Haft Notch, XCB-105-3699</div>
+      <div class="meta">
+        <span>310,610v</span>
+        <span>521,592f</span>
+        <span>13498.5KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#ac4cf4a0</span>
+    </div>
+  </div>
+  <div class="card " data-idx="19" data-name="tree 13 scan" data-id="e52760bb" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/e52760bb92d540c191def3b211cf0d9e.png" alt="Tree 13 Scan"></div>
+    <div class="info">
+      <div class="name" title="Tree 13 Scan">Tree 13 Scan</div>
+      <div class="meta">
+        <span>1,080,864v</span>
+        <span>979,300f</span>
+        <span>33842.7KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#e52760bb</span>
+    </div>
+  </div>
+  <div class="card " data-idx="20" data-name="yellow rose" data-id="c8cca8bb" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/c8cca8bb201d40e3bb5a6f0010f46aa8.png" alt="Yellow rose"></div>
+    <div class="info">
+      <div class="name" title="Yellow rose">Yellow rose</div>
+      <div class="meta">
+        <span>28,122v</span>
+        <span>41,895f</span>
+        <span>2681.8KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#c8cca8bb</span>
+    </div>
+  </div>
+  <div class="card " data-idx="21" data-name="［旧横浜正金銀行本店本館］屋上ドームのドルフィン装飾" data-id="7d07bdc1" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/7d07bdc17ac247dc8421c2449dcf425b.png" alt="［旧横浜正金銀行本店本館］屋上ドームのドルフィン装飾"></div>
+    <div class="info">
+      <div class="name" title="［旧横浜正金銀行本店本館］屋上ドームのドルフィン装飾">［旧横浜正金銀行本店本館］屋上ドームのドルフィン装飾</div>
+      <div class="meta">
+        <span>828,467v</span>
+        <span>1,165,657f</span>
+        <span>31381.8KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#7d07bdc1</span>
+    </div>
+  </div>
+  <div class="card " data-idx="22" data-name="throne" data-id="66394b25" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/66394b25957e4bb4898a60f7a7c2d122.png" alt="Throne"></div>
+    <div class="info">
+      <div class="name" title="Throne">Throne</div>
+      <div class="meta">
+        <span>1,289v</span>
+        <span>1,455f</span>
+        <span>2326.2KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#66394b25</span>
+    </div>
+  </div>
+  <div class="card " data-idx="23" data-name="operation room" data-id="19a01d44" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/19a01d44ba494164ab861372ec36a667.png" alt="Operation room"></div>
+    <div class="info">
+      <div class="name" title="Operation room">Operation room</div>
+      <div class="meta">
+        <span>175,090v</span>
+        <span>326,320f</span>
+        <span>7245.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#19a01d44</span>
+    </div>
+  </div>
+  <div class="card " data-idx="24" data-name="purple seashell" data-id="04d9983b" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/04d9983ba04242fe99182d4506ea0714.png" alt="Purple Seashell"></div>
+    <div class="info">
+      <div class="name" title="Purple Seashell">Purple Seashell</div>
+      <div class="meta">
+        <span>352v</span>
+        <span>504f</span>
+        <span>2782.8KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#04d9983b</span>
+    </div>
+  </div>
+  <div class="card " data-idx="25" data-name="renal system" data-id="7a0c4c6b" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/7a0c4c6bd5d84f7daf5fcfc5d20516c9.png" alt="Renal System"></div>
+    <div class="info">
+      <div class="name" title="Renal System">Renal System</div>
+      <div class="meta">
+        <span>175,798v</span>
+        <span>65,356f</span>
+        <span>4201.1KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#7a0c4c6b</span>
+    </div>
+  </div>
+  <div class="card " data-idx="26" data-name="justboom amp zero case" data-id="a840ee96" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/a840ee964e684993877fafe9f18d343d.png" alt="JustBoom Amp Zero Case"></div>
+    <div class="info">
+      <div class="name" title="JustBoom Amp Zero Case">JustBoom Amp Zero Case</div>
+      <div class="meta">
+        <span>5,261v</span>
+        <span>6,040f</span>
+        <span>175.1KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#a840ee96</span>
+    </div>
+  </div>
+  <div class="card " data-idx="27" data-name="bookshelf" data-id="f507c336" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/f507c33668e34d16b9306e8a8350f229.png" alt="Bookshelf"></div>
+    <div class="info">
+      <div class="name" title="Bookshelf">Bookshelf</div>
+      <div class="meta">
+        <span>4,690v</span>
+        <span>3,884f</span>
+        <span>138.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#f507c336</span>
+    </div>
+  </div>
+  <div class="card " data-idx="28" data-name="textured sword" data-id="bc377244" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/bc377244fc5a48499294d3890e6d0e8a.png" alt="Textured sword"></div>
+    <div class="info">
+      <div class="name" title="Textured sword">Textured sword</div>
+      <div class="meta">
+        <span>1,403v</span>
+        <span>1,982f</span>
+        <span>2245.5KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#bc377244</span>
+    </div>
+  </div>
+  <div class="card " data-idx="29" data-name="large tree log" data-id="5a3b7ba7" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/5a3b7ba7b639427ea970ccca90553aab.png" alt="Large tree log"></div>
+    <div class="info">
+      <div class="name" title="Large tree log">Large tree log</div>
+      <div class="meta">
+        <span>459v</span>
+        <span>765f</span>
+        <span>4096.0KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#5a3b7ba7</span>
+    </div>
+  </div>
+  <div class="card " data-idx="30" data-name="lungs_blendshape (1)" data-id="5ed9dbe3" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/5ed9dbe3d248407fb09d7959b3f13eb4.png" alt="lungs_blendShape (1)"></div>
+    <div class="info">
+      <div class="name" title="lungs_blendShape (1)">lungs_blendShape (1)</div>
+      <div class="meta">
+        <span>18,446v</span>
+        <span>22,088f</span>
+        <span>620.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#5ed9dbe3</span>
+    </div>
+  </div>
+  <div class="card " data-idx="31" data-name="[public test scan] apollo 10 capsule" data-id="4581bf09" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/4581bf090daa400a81156eef3936a981.png" alt="[Public Test Scan] Apollo 10 Capsule"></div>
+    <div class="info">
+      <div class="name" title="[Public Test Scan] Apollo 10 Capsule">[Public Test Scan] Apollo 10 Capsule</div>
+      <div class="meta">
+        <span>27,029v</span>
+        <span>41,717f</span>
+        <span>3186.1KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#4581bf09</span>
+    </div>
+  </div>
+  <div class="card " data-idx="32" data-name="3d garbage & tow trucks" data-id="2067e9dd" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/2067e9ddb55d41a5a09d450a6bc5aec3.png" alt="3D Garbage & Tow Trucks"></div>
+    <div class="info">
+      <div class="name" title="3D Garbage & Tow Trucks">3D Garbage & Tow Trucks</div>
+      <div class="meta">
+        <span>7,659v</span>
+        <span>4,392f</span>
+        <span>5693.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#2067e9dd</span>
+    </div>
+  </div>
+  <div class="card " data-idx="33" data-name="unusual vending machine" data-id="7e7f7c24" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/7e7f7c2442a748079a0d610d0bac5aa0.png" alt="Unusual Vending Machine"></div>
+    <div class="info">
+      <div class="name" title="Unusual Vending Machine">Unusual Vending Machine</div>
+      <div class="meta">
+        <span>2,429v</span>
+        <span>3,064f</span>
+        <span>1241.5KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#7e7f7c24</span>
+    </div>
+  </div>
+  <div class="card " data-idx="34" data-name="mechanicaldetail07 pbr material" data-id="c82e2a19" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/c82e2a19e37542619ce05741382af551.png" alt="MechanicalDetail07 PBR Material"></div>
+    <div class="info">
+      <div class="name" title="MechanicalDetail07 PBR Material">MechanicalDetail07 PBR Material</div>
+      <div class="meta">
+        <span>296v</span>
+        <span>148f</span>
+        <span>290.5KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#c82e2a19</span>
+    </div>
+  </div>
+  <div class="card " data-idx="35" data-name="angiosperm: koelreuteria allenii (cornell univ.)" data-id="559b7a2a" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/559b7a2ae50f426a8993b609d22931ff.png" alt="Angiosperm: Koelreuteria allenii (Cornell Univ.)"></div>
+    <div class="info">
+      <div class="name" title="Angiosperm: Koelreuteria allenii (Cornell Univ.)">Angiosperm: Koelreuteria allenii (Cornell Univ.)</div>
+      <div class="meta">
+        <span>103,762v</span>
+        <span>182,730f</span>
+        <span>5298.1KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#559b7a2a</span>
+    </div>
+  </div>
+  <div class="card " data-idx="36" data-name="south park skeleton" data-id="10728608" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/1072860880a342cc9017a65823ff5a87.png" alt="South Park skeleton"></div>
+    <div class="info">
+      <div class="name" title="South Park skeleton">South Park skeleton</div>
+      <div class="meta">
+        <span>7,959v</span>
+        <span>12,514f</span>
+        <span>303.6KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#10728608</span>
+    </div>
+  </div>
+  <div class="card " data-idx="37" data-name="rhinoceros skull" data-id="dbee4f8f" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/dbee4f8f32fd4a96b5a021137dd4e2c6.png" alt="Rhinoceros skull"></div>
+    <div class="info">
+      <div class="name" title="Rhinoceros skull">Rhinoceros skull</div>
+      <div class="meta">
+        <span>807,319v</span>
+        <span>1,292,398f</span>
+        <span>30914.8KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#dbee4f8f</span>
+    </div>
+  </div>
+  <div class="card " data-idx="38" data-name="repère de nivellement, rue de sévigné" data-id="a7f78901" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/a7f7890116dc48969ee0946942b00f8a.png" alt="Repère de Nivellement, Rue de Sévigné"></div>
+    <div class="info">
+      <div class="name" title="Repère de Nivellement, Rue de Sévigné">Repère de Nivellement, Rue de Sévigné</div>
+      <div class="meta">
+        <span>2,813,330v</span>
+        <span>939,908f</span>
+        <span>68240.9KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#a7f78901</span>
+    </div>
+  </div>
+  <div class="card " data-idx="39" data-name="roi012-048-01" data-id="39e84c34" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/39e84c34928a47a38a60cfdcbf22f60e.png" alt="ROI012-048-01"></div>
+    <div class="info">
+      <div class="name" title="ROI012-048-01">ROI012-048-01</div>
+      <div class="meta">
+        <span>362,770v</span>
+        <span>560,968f</span>
+        <span>13660.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#39e84c34</span>
+    </div>
+  </div>
+  <div class="card " data-idx="40" data-name="eucalyptus seed pod" data-id="7499b1c4" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/7499b1c442554928a7aa2a8900f435d9.png" alt="Eucalyptus Seed Pod"></div>
+    <div class="info">
+      <div class="name" title="Eucalyptus Seed Pod">Eucalyptus Seed Pod</div>
+      <div class="meta">
+        <span>563,642v</span>
+        <span>893,988f</span>
+        <span>23193.5KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#7499b1c4</span>
+    </div>
+  </div>
+  <div class="card " data-idx="41" data-name="ribosome core" data-id="dc175a1d" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/dc175a1d3ba94a27a39e7bc7c8934021.png" alt="Ribosome core"></div>
+    <div class="info">
+      <div class="name" title="Ribosome core">Ribosome core</div>
+      <div class="meta">
+        <span>738,454v</span>
+        <span>1,172,516f</span>
+        <span>28164.9KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#dc175a1d</span>
+    </div>
+  </div>
+  <div class="card " data-idx="42" data-name="poldark pants" data-id="7b7b529b" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/7b7b529b77ad43c98f7faffeacd63173.png" alt="Poldark Pants"></div>
+    <div class="info">
+      <div class="name" title="Poldark Pants">Poldark Pants</div>
+      <div class="meta">
+        <span>31,659v</span>
+        <span>56,302f</span>
+        <span>1031.8KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#7b7b529b</span>
+    </div>
+  </div>
+  <div class="card " data-idx="43" data-name="llàntia àtica de vernís negre" data-id="f961db16" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/f961db16ffa84156a7803a62478a11ca.png" alt="LLÀNTIA ÀTICA DE VERNÍS NEGRE"></div>
+    <div class="info">
+      <div class="name" title="LLÀNTIA ÀTICA DE VERNÍS NEGRE">LLÀNTIA ÀTICA DE VERNÍS NEGRE</div>
+      <div class="meta">
+        <span>56,740v</span>
+        <span>108,843f</span>
+        <span>3512.0KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#f961db16</span>
+    </div>
+  </div>
+  <div class="card " data-idx="44" data-name="medieval floor2" data-id="1280872b" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/1280872b95da402b8facb13c38fec32f.png" alt="Medieval Floor2"></div>
+    <div class="info">
+      <div class="name" title="Medieval Floor2">Medieval Floor2</div>
+      <div class="meta">
+        <span>30,167v</span>
+        <span>59,608f</span>
+        <span>4970.7KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#1280872b</span>
+    </div>
+  </div>
+  <div class="card " data-idx="45" data-name="updated mr vegify (all glitches resolved)" data-id="a184f33a" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/a184f33ab2c24c318f71ac4f4bb0115d.png" alt="Updated Mr Vegify (all glitches resolved)"></div>
+    <div class="info">
+      <div class="name" title="Updated Mr Vegify (all glitches resolved)">Updated Mr Vegify (all glitches resolved)</div>
+      <div class="meta">
+        <span>24,450v</span>
+        <span>40,270f</span>
+        <span>951.1KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#a184f33a</span>
+    </div>
+  </div>
+  <div class="card " data-idx="46" data-name="christmas flowers" data-id="12011b23" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/12011b23135340d98c246b5801bbf7b7.png" alt="Christmas flowers"></div>
+    <div class="info">
+      <div class="name" title="Christmas flowers">Christmas flowers</div>
+      <div class="meta">
+        <span>40,775v</span>
+        <span>49,798f</span>
+        <span>3167.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#12011b23</span>
+    </div>
+  </div>
+  <div class="card " data-idx="47" data-name="birdo jr" data-id="6d74da5c" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/6d74da5c820a4b30b6f6cf05a8b0d1ad.png" alt="Birdo JR"></div>
+    <div class="info">
+      <div class="name" title="Birdo JR">Birdo JR</div>
+      <div class="meta">
+        <span>5,858v</span>
+        <span>7,780f</span>
+        <span>160.8KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#6d74da5c</span>
+    </div>
+  </div>
+  <div class="card " data-idx="48" data-name="precipitation possible" data-id="4662b518" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/4662b5183a2a43919823ee3f3b71dea6.png" alt="Precipitation possible"></div>
+    <div class="info">
+      <div class="name" title="Precipitation possible">Precipitation possible</div>
+      <div class="meta">
+        <span>105,580v</span>
+        <span>192,446f</span>
+        <span>4319.0KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#4662b518</span>
+    </div>
+  </div>
+  <div class="card " data-idx="49" data-name="diorama_project" data-id="df521ec7" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/df521ec775294f6cac7406d9bdcf1b70.png" alt="Diorama_project"></div>
+    <div class="info">
+      <div class="name" title="Diorama_project">Diorama_project</div>
+      <div class="meta">
+        <span>7,035v</span>
+        <span>7,270f</span>
+        <span>25864.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#df521ec7</span>
+    </div>
+  </div>
+  <div class="card " data-idx="50" data-name="kaladesh servo" data-id="13b1bf0c" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/13b1bf0cc3d84730a52a5af63dba6ca3.png" alt="Kaladesh Servo"></div>
+    <div class="info">
+      <div class="name" title="Kaladesh Servo">Kaladesh Servo</div>
+      <div class="meta">
+        <span>537,783v</span>
+        <span>872,032f</span>
+        <span>30551.0KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#13b1bf0c</span>
+    </div>
+  </div>
+  <div class="card " data-idx="51" data-name="external light" data-id="c26e20eb" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/c26e20eb514747e39413eae35e4b2c88.png" alt="External Light"></div>
+    <div class="info">
+      <div class="name" title="External Light">External Light</div>
+      <div class="meta">
+        <span>16,243v</span>
+        <span>20,564f</span>
+        <span>2659.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#c26e20eb</span>
+    </div>
+  </div>
+  <div class="card " data-idx="52" data-name="vase - realityscan" data-id="2509e000" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/2509e00082b047c4809080ad835b3c60.png" alt="Vase - RealityScan"></div>
+    <div class="info">
+      <div class="name" title="Vase - RealityScan">Vase - RealityScan</div>
+      <div class="meta">
+        <span>594,247v</span>
+        <span>739,344f</span>
+        <span>22147.8KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#2509e000</span>
+    </div>
+  </div>
+  <div class="card " data-idx="53" data-name="spyglass" data-id="acedcaa5" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/acedcaa52310448288b0669e01e23de5.png" alt="Spyglass"></div>
+    <div class="info">
+      <div class="name" title="Spyglass">Spyglass</div>
+      <div class="meta">
+        <span>3,675v</span>
+        <span>6,752f</span>
+        <span>4805.5KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#acedcaa5</span>
+    </div>
+  </div>
+  <div class="card " data-idx="54" data-name="hl-103 bone labret, hot springs village, alaska" data-id="607dc7e1" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/607dc7e18cb04f3fbeb169078e3ea87a.png" alt="HL-103 Bone Labret, Hot Springs Village, Alaska"></div>
+    <div class="info">
+      <div class="name" title="HL-103 Bone Labret, Hot Springs Village, Alaska">HL-103 Bone Labret, Hot Springs Village, Alaska</div>
+      <div class="meta">
+        <span>5,041v</span>
+        <span>9,724f</span>
+        <span>1163.9KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#607dc7e1</span>
+    </div>
+  </div>
+  <div class="card " data-idx="55" data-name="ww2 - city scene" data-id="9ed2b9c9" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/9ed2b9c9f146440b935a9934f967b517.png" alt="WW2 - City Scene"></div>
+    <div class="info">
+      <div class="name" title="WW2 - City Scene">WW2 - City Scene</div>
+      <div class="meta">
+        <span>535,200v</span>
+        <span>429,192f</span>
+        <span>56878.9KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#9ed2b9c9</span>
+    </div>
+  </div>
+  <div class="card " data-idx="56" data-name="c199 gargaliani: ordhines" data-id="2ed42c95" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/2ed42c9531a4487eb804b99d46e2a77c.png" alt="C199 Gargaliani: Ordhines"></div>
+    <div class="info">
+      <div class="name" title="C199 Gargaliani: Ordhines">C199 Gargaliani: Ordhines</div>
+      <div class="meta">
+        <span>2,091v</span>
+        <span>4,000f</span>
+        <span>340.0KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#2ed42c95</span>
+    </div>
+  </div>
+  <div class="card " data-idx="57" data-name="moon brother pony" data-id="79728f04" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/79728f048e854e2db32eee6c267ea622.png" alt="Moon brother pony"></div>
+    <div class="info">
+      <div class="name" title="Moon brother pony">Moon brother pony</div>
+      <div class="meta">
+        <span>19,797v</span>
+        <span>38,282f</span>
+        <span>1244.6KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#79728f04</span>
+    </div>
+  </div>
+  <div class="card " data-idx="58" data-name="de_inferno" data-id="5cc26838" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/5cc268386ce345a8be9be077c0cb4c8c.png" alt="De_Inferno"></div>
+    <div class="info">
+      <div class="name" title="De_Inferno">De_Inferno</div>
+      <div class="meta">
+        <span>59,390v</span>
+        <span>43,404f</span>
+        <span>1670.2KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#5cc26838</span>
+    </div>
+  </div>
+  <div class="card " data-idx="59" data-name="anubis head" data-id="bf4fa1e5" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/bf4fa1e548bb4b178941eb0f588010de.png" alt="Anubis Head"></div>
+    <div class="info">
+      <div class="name" title="Anubis Head">Anubis Head</div>
+      <div class="meta">
+        <span>204,768v</span>
+        <span>286,124f</span>
+        <span>8754.7KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#bf4fa1e5</span>
+    </div>
+  </div>
+  <div class="card " data-idx="60" data-name="flask" data-id="66b40aab" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/66b40aabfe7447128fbe4126530e7e96.png" alt="Flask"></div>
+    <div class="info">
+      <div class="name" title="Flask">Flask</div>
+      <div class="meta">
+        <span>2,886v</span>
+        <span>3,262f</span>
+        <span>2882.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#66b40aab</span>
+    </div>
+  </div>
+  <div class="card " data-idx="61" data-name="mars rover by jonathan" data-id="3ea57658" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/3ea576589cf0490bb76ee3282a3b0e31.png" alt="Mars Rover by Jonathan"></div>
+    <div class="info">
+      <div class="name" title="Mars Rover by Jonathan">Mars Rover by Jonathan</div>
+      <div class="meta">
+        <span>6,933v</span>
+        <span>11,448f</span>
+        <span>271.1KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#3ea57658</span>
+    </div>
+  </div>
+  <div class="card " data-idx="62" data-name="table" data-id="63ecc2ab" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/63ecc2ab01cc482d8c92fc51e1d3d871.png" alt="Table"></div>
+    <div class="info">
+      <div class="name" title="Table">Table</div>
+      <div class="meta">
+        <span>100v</span>
+        <span>50f</span>
+        <span>4.0KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#63ecc2ab</span>
+    </div>
+  </div>
+  <div class="card " data-idx="63" data-name="moon_hu_sketchfab final" data-id="5c70c390" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/5c70c390a8624e35beb4b4361bec2ea7.png" alt="Moon_Hu_Sketchfab Final"></div>
+    <div class="info">
+      <div class="name" title="Moon_Hu_Sketchfab Final">Moon_Hu_Sketchfab Final</div>
+      <div class="meta">
+        <span>188,306v</span>
+        <span>186,476f</span>
+        <span>5864.7KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#5c70c390</span>
+    </div>
+  </div>
+  <div class="card " data-idx="64" data-name="espada katana." data-id="9fefc200" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/9fefc20019924865a378260c98e9e133.png" alt="Espada Katana."></div>
+    <div class="info">
+      <div class="name" title="Espada Katana.">Espada Katana.</div>
+      <div class="meta">
+        <span>955v</span>
+        <span>748f</span>
+        <span>602.6KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#9fefc200</span>
+    </div>
+  </div>
+  <div class="card " data-idx="65" data-name="cat plaza" data-id="5b624376" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/5b6243762d2b4c3bbe69d132780e38b4.png" alt="Cat Plaza"></div>
+    <div class="info">
+      <div class="name" title="Cat Plaza">Cat Plaza</div>
+      <div class="meta">
+        <span>2,440v</span>
+        <span>3,206f</span>
+        <span>138.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#5b624376</span>
+    </div>
+  </div>
+  <div class="card " data-idx="66" data-name="mini vehicle" data-id="70596c95" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/70596c9524f9481bb48e6d39c7534f1f.png" alt="Mini Vehicle"></div>
+    <div class="info">
+      <div class="name" title="Mini Vehicle">Mini Vehicle</div>
+      <div class="meta">
+        <span>3,945v</span>
+        <span>1,324f</span>
+        <span>767.6KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#70596c95</span>
+    </div>
+  </div>
+  <div class="card " data-idx="67" data-name="tower" data-id="5d09e71a" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/5d09e71a3c664f8bbdcb43427a591dee.png" alt="tower"></div>
+    <div class="info">
+      <div class="name" title="tower">tower</div>
+      <div class="meta">
+        <span>900,028v</span>
+        <span>300,491f</span>
+        <span>22092.7KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#5d09e71a</span>
+    </div>
+  </div>
+  <div class="card " data-idx="68" data-name="roman coin" data-id="56fddf35" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/56fddf35a2e2428197e3a8d4860ec7b5.png" alt="Roman Coin"></div>
+    <div class="info">
+      <div class="name" title="Roman Coin">Roman Coin</div>
+      <div class="meta">
+        <span>113,046v</span>
+        <span>199,971f</span>
+        <span>6159.1KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#56fddf35</span>
+    </div>
+  </div>
+  <div class="card " data-idx="69" data-name="microughs_streptobacillusmoniliformis_als" data-id="2854a512" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/2854a5128d2e44a993a93848c3d4ca70.png" alt="microughs_Streptobacillusmoniliformis_ALS"></div>
+    <div class="info">
+      <div class="name" title="microughs_Streptobacillusmoniliformis_ALS">microughs_Streptobacillusmoniliformis_ALS</div>
+      <div class="meta">
+        <span>94,048v</span>
+        <span>170,938f</span>
+        <span>3841.7KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#2854a512</span>
+    </div>
+  </div>
+  <div class="card " data-idx="70" data-name="bb yamato (new year mode)" data-id="addfea2c" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/addfea2c1142463e814105108e521039.png" alt="BB Yamato (New Year Mode)"></div>
+    <div class="info">
+      <div class="name" title="BB Yamato (New Year Mode)">BB Yamato (New Year Mode)</div>
+      <div class="meta">
+        <span>249,936v</span>
+        <span>347,742f</span>
+        <span>20125.2KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#addfea2c</span>
+    </div>
+  </div>
+  <div class="card " data-idx="71" data-name="crystalpave pure white" data-id="2a62fca2" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/2a62fca27766483ea15ee651383c160a.png" alt="Crystalpave Pure White"></div>
+    <div class="info">
+      <div class="name" title="Crystalpave Pure White">Crystalpave Pure White</div>
+      <div class="meta">
+        <span>48v</span>
+        <span>24f</span>
+        <span>132.0KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#2a62fca2</span>
+    </div>
+  </div>
+  <div class="card " data-idx="72" data-name="siargao island, philippines 3d gebco_2019" data-id="89c98e7f" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/89c98e7fdbd546cabd8b97ae48e1637a.png" alt="Siargao Island, Philippines 3d GEBCO_2019"></div>
+    <div class="info">
+      <div class="name" title="Siargao Island, Philippines 3d GEBCO_2019">Siargao Island, Philippines 3d GEBCO_2019</div>
+      <div class="meta">
+        <span>8,784v</span>
+        <span>17,182f</span>
+        <span>751.8KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#89c98e7f</span>
+    </div>
+  </div>
+  <div class="card " data-idx="73" data-name="fortress bastion training room" data-id="ce53df6c" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/ce53df6c36024a8ea12ccbf79a0a34a0.png" alt="Fortress Bastion Training Room"></div>
+    <div class="info">
+      <div class="name" title="Fortress Bastion Training Room">Fortress Bastion Training Room</div>
+      <div class="meta">
+        <span>2,634,763v</span>
+        <span>880,512f</span>
+        <span>63160.0KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#ce53df6c</span>
+    </div>
+  </div>
+  <div class="card " data-idx="74" data-name="gear/lever" data-id="b04fc40b" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/b04fc40bacdf46fa9cd0f5d1c864be24.png" alt="Gear/Lever"></div>
+    <div class="info">
+      <div class="name" title="Gear/Lever">Gear/Lever</div>
+      <div class="meta">
+        <span>1,048v</span>
+        <span>860f</span>
+        <span>2670.6KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#b04fc40b</span>
+    </div>
+  </div>
+  <div class="card " data-idx="75" data-name="covid-19 infection, stay home!" data-id="1abf6124" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/1abf6124c37a4cf3a5bd6edd5012725f.png" alt="COVID-19 Infection, Stay Home!"></div>
+    <div class="info">
+      <div class="name" title="COVID-19 Infection, Stay Home!">COVID-19 Infection, Stay Home!</div>
+      <div class="meta">
+        <span>2,839,382v</span>
+        <span>1,403,056f</span>
+        <span>71900.6KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#1abf6124</span>
+    </div>
+  </div>
+  <div class="card " data-idx="76" data-name="candle holder" data-id="30256f20" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/30256f207c5e4500befb371273ab6878.png" alt="Candle Holder"></div>
+    <div class="info">
+      <div class="name" title="Candle Holder">Candle Holder</div>
+      <div class="meta">
+        <span>249,391v</span>
+        <span>466,484f</span>
+        <span>14724.0KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#30256f20</span>
+    </div>
+  </div>
+  <div class="card " data-idx="77" data-name="wine & cups table - lowpoly" data-id="4b516ca7" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/4b516ca7f743448484550b4da91cf286.png" alt="Wine & Cups Table - Lowpoly"></div>
+    <div class="info">
+      <div class="name" title="Wine & Cups Table - Lowpoly">Wine & Cups Table - Lowpoly</div>
+      <div class="meta">
+        <span>6,698v</span>
+        <span>11,090f</span>
+        <span>262.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#4b516ca7</span>
+    </div>
+  </div>
+  <div class="card " data-idx="78" data-name="sorex caecutiens (laxmann's shrew)" data-id="3f4d6c67" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/3f4d6c67f9b74923866d88a4ef8f58b1.png" alt="Sorex caecutiens (Laxmann's shrew)"></div>
+    <div class="info">
+      <div class="name" title="Sorex caecutiens (Laxmann's shrew)">Sorex caecutiens (Laxmann's shrew)</div>
+      <div class="meta">
+        <span>393,893v</span>
+        <span>414,104f</span>
+        <span>12547.2KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#3f4d6c67</span>
+    </div>
+  </div>
+  <div class="card " data-idx="79" data-name="skull male 72yo" data-id="6048cca2" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/6048cca2dd4c4815b0527e162e9fde69.png" alt="Skull Male 72yo"></div>
+    <div class="info">
+      <div class="name" title="Skull Male 72yo">Skull Male 72yo</div>
+      <div class="meta">
+        <span>321,697v</span>
+        <span>501,248f</span>
+        <span>12158.2KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#6048cca2</span>
+    </div>
+  </div>
+  <div class="card " data-idx="80" data-name="instructional chess - knight" data-id="8e9386da" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/8e9386da0d5440c5b8af50b7d0660372.png" alt="Instructional Chess - Knight"></div>
+    <div class="info">
+      <div class="name" title="Instructional Chess - Knight">Instructional Chess - Knight</div>
+      <div class="meta">
+        <span>919,013v</span>
+        <span>1,314,060f</span>
+        <span>33349.7KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#8e9386da</span>
+    </div>
+  </div>
+  <div class="card " data-idx="81" data-name="s8 squelch fighter" data-id="0aa5a95f" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/0aa5a95f7a6a4f899ef2e5fa7dc53b66.png" alt="S8 Squelch Fighter"></div>
+    <div class="info">
+      <div class="name" title="S8 Squelch Fighter">S8 Squelch Fighter</div>
+      <div class="meta">
+        <span>40,382v</span>
+        <span>33,572f</span>
+        <span>1184.2KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#0aa5a95f</span>
+    </div>
+  </div>
+  <div class="card " data-idx="82" data-name="dragon in water 2" data-id="9bab5801" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/9bab5801149548e0a2080f7881cd2083.png" alt="Dragon In Water 2"></div>
+    <div class="info">
+      <div class="name" title="Dragon In Water 2">Dragon In Water 2</div>
+      <div class="meta">
+        <span>160v</span>
+        <span>136f</span>
+        <span>9.9KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#9bab5801</span>
+    </div>
+  </div>
+  <div class="card " data-idx="83" data-name="rubik's cube v1" data-id="3b73e11f" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/3b73e11ff7324a6484a17daec8fdac2c.png" alt="rubik's cube v1"></div>
+    <div class="info">
+      <div class="name" title="rubik's cube v1">rubik's cube v1</div>
+      <div class="meta">
+        <span>240v</span>
+        <span>192f</span>
+        <span>8.5KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#3b73e11f</span>
+    </div>
+  </div>
+  <div class="card " data-idx="84" data-name="cap de silè, museu de lleida" data-id="533950a2" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/533950a2bb7b4dd2b5fae2f83d963fb6.png" alt="Cap de Silè, Museu de Lleida"></div>
+    <div class="info">
+      <div class="name" title="Cap de Silè, Museu de Lleida">Cap de Silè, Museu de Lleida</div>
+      <div class="meta">
+        <span>135,443v</span>
+        <span>200,000f</span>
+        <span>8342.5KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#533950a2</span>
+    </div>
+  </div>
+  <div class="card " data-idx="85" data-name="c849 phourkaria/pergari" data-id="dd084f2a" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/dd084f2ab9b24b76b05be83c4477dfe5.png" alt="C849 Phourkaria/Pergari"></div>
+    <div class="info">
+      <div class="name" title="C849 Phourkaria/Pergari">C849 Phourkaria/Pergari</div>
+      <div class="meta">
+        <span>2,360v</span>
+        <span>4,060f</span>
+        <span>664.0KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#dd084f2a</span>
+    </div>
+  </div>
+  <div class="card " data-idx="86" data-name="parque linear - trecho 1 - setor b" data-id="6146fc3d" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/6146fc3d5fe04abc9f7111386a25e6df.png" alt="Parque Linear - Trecho 1 - Setor B"></div>
+    <div class="info">
+      <div class="name" title="Parque Linear - Trecho 1 - Setor B">Parque Linear - Trecho 1 - Setor B</div>
+      <div class="meta">
+        <span>826,279v</span>
+        <span>625,112f</span>
+        <span>25567.8KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#6146fc3d</span>
+    </div>
+  </div>
+  <div class="card " data-idx="87" data-name="unsc savannah. halo frigate free high poly model" data-id="aa26039f" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/aa26039fca994ad89137a789e9ea0dd5.png" alt="UNSC Savannah. Halo Frigate Free High Poly Model"></div>
+    <div class="info">
+      <div class="name" title="UNSC Savannah. Halo Frigate Free High Poly Model">UNSC Savannah. Halo Frigate Free High Poly Model</div>
+      <div class="meta">
+        <span>161,165v</span>
+        <span>212,080f</span>
+        <span>5634.2KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#aa26039f</span>
+    </div>
+  </div>
+  <div class="card " data-idx="88" data-name="haw par villa inner gate" data-id="4fa748c9" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/4fa748c9c7994602aab585c3446352ab.png" alt="Haw Par Villa Inner Gate"></div>
+    <div class="info">
+      <div class="name" title="Haw Par Villa Inner Gate">Haw Par Villa Inner Gate</div>
+      <div class="meta">
+        <span>85,660v</span>
+        <span>124,324f</span>
+        <span>5222.5KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#4fa748c9</span>
+    </div>
+  </div>
+  <div class="card " data-idx="89" data-name="playtime" data-id="40131703" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/40131703c536482698d80c215b02f207.png" alt="Playtime"></div>
+    <div class="info">
+      <div class="name" title="Playtime">Playtime</div>
+      <div class="meta">
+        <span>58,843v</span>
+        <span>116,450f</span>
+        <span>3133.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#40131703</span>
+    </div>
+  </div>
+  <div class="card " data-idx="90" data-name="mount rushmore" data-id="524c9e3f" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/524c9e3f3d0a492b878665bf4342e17a.png" alt="Mount Rushmore"></div>
+    <div class="info">
+      <div class="name" title="Mount Rushmore">Mount Rushmore</div>
+      <div class="meta">
+        <span>83,869v</span>
+        <span>135,270f</span>
+        <span>7121.5KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#524c9e3f</span>
+    </div>
+  </div>
+  <div class="card " data-idx="91" data-name="reproducción: vaso ovoide" data-id="bb1d0d19" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/bb1d0d1910854b9dab5602ee0723bf10.png" alt="Reproducción: Vaso ovoide"></div>
+    <div class="info">
+      <div class="name" title="Reproducción: Vaso ovoide">Reproducción: Vaso ovoide</div>
+      <div class="meta">
+        <span>21,920v</span>
+        <span>42,428f</span>
+        <span>2936.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#bb1d0d19</span>
+    </div>
+  </div>
+  <div class="card " data-idx="92" data-name="rounded edges railing" data-id="2fa5e80f" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/2fa5e80feb2140a795d1f98e7909e238.png" alt="Rounded edges railing"></div>
+    <div class="info">
+      <div class="name" title="Rounded edges railing">Rounded edges railing</div>
+      <div class="meta">
+        <span>632v</span>
+        <span>624f</span>
+        <span>15.7KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#2fa5e80f</span>
+    </div>
+  </div>
+  <div class="card " data-idx="93" data-name="foot of a bowl - pg.2807.1397" data-id="4800e31e" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/4800e31e40584ccb9652954e1a60ef7d.png" alt="Foot of a bowl - PG.2807.1397"></div>
+    <div class="info">
+      <div class="name" title="Foot of a bowl - PG.2807.1397">Foot of a bowl - PG.2807.1397</div>
+      <div class="meta">
+        <span>54,868v</span>
+        <span>104,403f</span>
+        <span>3425.2KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#4800e31e</span>
+    </div>
+  </div>
+  <div class="card " data-idx="94" data-name="portrait for dig 2783 assignment 9" data-id="97244910" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/972449109d6845e68a473667a25c11b3.png" alt="Portrait for DIG 2783 Assignment 9"></div>
+    <div class="info">
+      <div class="name" title="Portrait for DIG 2783 Assignment 9">Portrait for DIG 2783 Assignment 9</div>
+      <div class="meta">
+        <span>24v</span>
+        <span>12f</span>
+        <span>5.8KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#97244910</span>
+    </div>
+  </div>
+  <div class="card " data-idx="95" data-name="calculator" data-id="85e43288" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/85e43288cd4f432cb1c6ade8423cc445.png" alt="Calculator"></div>
+    <div class="info">
+      <div class="name" title="Calculator">Calculator</div>
+      <div class="meta">
+        <span>48,041v</span>
+        <span>53,817f</span>
+        <span>2115.2KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#85e43288</span>
+    </div>
+  </div>
+  <div class="card " data-idx="96" data-name="low poly water" data-id="f3471d6d" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/f3471d6d2e4447fc8b5cf837c963c1de.png" alt="Low Poly Water"></div>
+    <div class="info">
+      <div class="name" title="Low Poly Water">Low Poly Water</div>
+      <div class="meta">
+        <span>4,056v</span>
+        <span>1,352f</span>
+        <span>96.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#f3471d6d</span>
+    </div>
+  </div>
+  <div class="card " data-idx="97" data-name="sculpture20180407170611" data-id="5b4b0db9" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/5b4b0db9f68f4383b0a9d644ed61676d.png" alt="Sculpture20180407170611"></div>
+    <div class="info">
+      <div class="name" title="Sculpture20180407170611">Sculpture20180407170611</div>
+      <div class="meta">
+        <span>2,044v</span>
+        <span>3,472f</span>
+        <span>6548.4KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#5b4b0db9</span>
+    </div>
+  </div>
+  <div class="card " data-idx="98" data-name="the flying circus" data-id="b9ff3130" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/b9ff31305049415ca6c891da9683c711.png" alt="The Flying Circus"></div>
+    <div class="info">
+      <div class="name" title="The Flying Circus">The Flying Circus</div>
+      <div class="meta">
+        <span>22,376v</span>
+        <span>22,910f</span>
+        <span>1890.3KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#b9ff3130</span>
+    </div>
+  </div>
+  <div class="card " data-idx="99" data-name="c1225 eretria: acropolis" data-id="c1de8b60" data-cat="educational" data-status="REVIEW">
+    <div class="thumb"><img src="thumbnails/c1de8b60baa3484094d6f2b881ad749f.png" alt="C1225 Eretria: Acropolis"></div>
+    <div class="info">
+      <div class="name" title="C1225 Eretria: Acropolis">C1225 Eretria: Acropolis</div>
+      <div class="meta">
+        <span>13,259v</span>
+        <span>10,145f</span>
+        <span>1638.2KB</span>
+      </div>
+      <span class="cat-tag">educational</span>
+      <span class="id-tag">#c1de8b60</span>
+    </div>
+  </div>
+  <div class="card status-REMOVE" data-idx="100" data-name="[orphan] 4bc72588" data-id="4bc72588" data-cat="unknown" data-status="REMOVE">
+    <div class="thumb"><div class="no-thumb">▶</div></div>
+    <div class="info">
+      <div class="name" title="[ORPHAN] 4bc72588">[ORPHAN] 4bc72588</div>
+      <div class="meta">
+        <span>0v</span>
+        <span>0f</span>
+        <span>0.0KB</span>
+      </div>
+      <span class="cat-tag">unknown</span>
+      <span class="id-tag">#4bc72588</span>
+    </div>
+  </div>
+</div>
+
+<div class="stats" id="stats">
+Loading...
+</div>
+
+<script>
+const templates = [{"id": "8476c417", "idx": 0, "filename": "8476c4170df24cf5bbe6967222d1a42d.glb", "name": "chair", "category": "furniture", "vertices": 19008, "faces": 14337, "size_kb": "3646.0", "preview": "thumbnails/8476c4170df24cf5bbe6967222d1a42d.png", "status": "REVIEW", "notes": ""}, {"id": "fc1339e2", "idx": 1, "filename": "fc1339e225b7408caec82681be2746c5.glb", "name": "Medieval Punishment", "category": "educational", "vertices": 5018, "faces": 4672, "size_kb": "1336.3", "preview": "thumbnails/fc1339e225b7408caec82681be2746c5.png", "status": "REVIEW", "notes": ""}, {"id": "7b56f2bd", "idx": 2, "filename": "7b56f2bdfd2845588f6bde0c5362fd0d.glb", "name": "Bull sculpin head (Enophrys taurina)", "category": "educational", "vertices": 784271, "faces": 1074221, "size_kb": "27907.4", "preview": "thumbnails/7b56f2bdfd2845588f6bde0c5362fd0d.png", "status": "REVIEW", "notes": ""}, {"id": "11102f04", "idx": 3, "filename": "11102f046e7846b8b4053bce5779d95c.glb", "name": "Research>Mechanisms>Systems>Mark VI/VII Gate", "category": "educational", "vertices": 379, "faces": 208, "size_kb": "51.4", "preview": "thumbnails/11102f046e7846b8b4053bce5779d95c.png", "status": "REVIEW", "notes": ""}, {"id": "0712f63f", "idx": 4, "filename": "0712f63f7e714e0d8d1247a08ec1f7fe.glb", "name": "C6090 Praisos: Third Acropolis", "category": "educational", "vertices": 2100, "faces": 4018, "size_kb": "601.4", "preview": "thumbnails/0712f63f7e714e0d8d1247a08ec1f7fe.png", "status": "REVIEW", "notes": ""}, {"id": "898e9be8", "idx": 5, "filename": "898e9be8c8964f6298188a2901216e80.glb", "name": "Mazda RX7 Stylised", "category": "educational", "vertices": 10097, "faces": 5733, "size_kb": "266.3", "preview": "thumbnails/898e9be8c8964f6298188a2901216e80.png", "status": "REVIEW", "notes": ""}, {"id": "14be2940", "idx": 6, "filename": "14be2940b43541168e157a7ccfb60560.glb", "name": "Biological Planet Low Poly Bear 03 2", "category": "educational", "vertices": 28787, "faces": 50180, "size_kb": "1151.9", "preview": "thumbnails/14be2940b43541168e157a7ccfb60560.png", "status": "REVIEW", "notes": ""}, {"id": "fcdfc931", "idx": 7, "filename": "fcdfc931f73b4865a4a4005c65fc2afe.glb", "name": "Espen 3D Brain", "category": "educational", "vertices": 302, "faces": 108, "size_kb": "308.7", "preview": "thumbnails/fcdfc931f73b4865a4a4005c65fc2afe.png", "status": "REVIEW", "notes": ""}, {"id": "f5d18e92", "idx": 8, "filename": "f5d18e9222814a8697a7902238139be5.glb", "name": "Riproduzione di vaso biansato tardoromano", "category": "educational", "vertices": 552001, "faces": 769478, "size_kb": "20414.4", "preview": "thumbnails/f5d18e9222814a8697a7902238139be5.png", "status": "REVIEW", "notes": ""}, {"id": "8c845890", "idx": 9, "filename": "8c84589050f94176b03140693388cd8e.glb", "name": "Barcelona Pavilion (3D Demo)", "category": "educational", "vertices": 29459, "faces": 19839, "size_kb": "2123.4", "preview": "thumbnails/8c84589050f94176b03140693388cd8e.png", "status": "REVIEW", "notes": ""}, {"id": "961ff5e5", "idx": 10, "filename": "961ff5e59afa4c34ae7cfa8687f67764.glb", "name": "Moasy tree stump", "category": "educational", "vertices": 207149, "faces": 69057, "size_kb": "7203.9", "preview": "thumbnails/961ff5e59afa4c34ae7cfa8687f67764.png", "status": "REVIEW", "notes": ""}, {"id": "1a6f9114", "idx": 11, "filename": "1a6f91147e464a03a212c372cee14120.glb", "name": "PSP Little Big Planet Sackboy(HD Textures)", "category": "educational", "vertices": 1075, "faces": 1376, "size_kb": "1386.4", "preview": "thumbnails/1a6f91147e464a03a212c372cee14120.png", "status": "REVIEW", "notes": ""}, {"id": "d51f289c", "idx": 12, "filename": "d51f289c57c046d39426ae90a9ace6e8.glb", "name": "Petroglyph H20, Khatm Al Melaha, Kalba, Sharjah", "category": "educational", "vertices": 780522, "faces": 1076092, "size_kb": "30195.6", "preview": "thumbnails/d51f289c57c046d39426ae90a9ace6e8.png", "status": "REVIEW", "notes": ""}, {"id": "837c9fa1", "idx": 13, "filename": "837c9fa18e024e8a82293e2145e91fd8.glb", "name": "Scifi revolver 2.0", "category": "educational", "vertices": 15473, "faces": 20092, "size_kb": "25495.5", "preview": "thumbnails/837c9fa18e024e8a82293e2145e91fd8.png", "status": "REVIEW", "notes": ""}, {"id": "b06f652a", "idx": 14, "filename": "b06f652a17c44a0998a93c5c7e2188f8.glb", "name": "covid map by blocks", "category": "educational", "vertices": 43916, "faces": 48024, "size_kb": "1421.6", "preview": "thumbnails/b06f652a17c44a0998a93c5c7e2188f8.png", "status": "REVIEW", "notes": ""}, {"id": "924aed0f", "idx": 15, "filename": "924aed0fa1cb4ae4a9071a3c49044f14.glb", "name": "Edinburg Castle souvenir [Photogrammetry]", "category": "educational", "vertices": 110595, "faces": 193305, "size_kb": "5801.9", "preview": "thumbnails/924aed0fa1cb4ae4a9071a3c49044f14.png", "status": "REVIEW", "notes": ""}, {"id": "39d96c58", "idx": 16, "filename": "39d96c58470146d5a7cecd91a8989ac9.glb", "name": "C6673 Poussi Chamolia", "category": "educational", "vertices": 2040, "faces": 3900, "size_kb": "523.4", "preview": "thumbnails/39d96c58470146d5a7cecd91a8989ac9.png", "status": "REVIEW", "notes": ""}, {"id": "5699e6ec", "idx": 17, "filename": "5699e6ec5c0f40b1ad0f78264595133d.glb", "name": "Tooth", "category": "educational", "vertices": 3765, "faces": 5952, "size_kb": "144.8", "preview": "thumbnails/5699e6ec5c0f40b1ad0f78264595133d.png", "status": "REVIEW", "notes": ""}, {"id": "ac4cf4a0", "idx": 18, "filename": "ac4cf4a0ee1740a08478bc9be83454e9.glb", "name": "Adze Holder with Haft Notch, XCB-105-3699", "category": "educational", "vertices": 310610, "faces": 521592, "size_kb": "13498.5", "preview": "thumbnails/ac4cf4a0ee1740a08478bc9be83454e9.png", "status": "REVIEW", "notes": ""}, {"id": "e52760bb", "idx": 19, "filename": "e52760bb92d540c191def3b211cf0d9e.glb", "name": "Tree 13 Scan", "category": "educational", "vertices": 1080864, "faces": 979300, "size_kb": "33842.7", "preview": "thumbnails/e52760bb92d540c191def3b211cf0d9e.png", "status": "REVIEW", "notes": ""}, {"id": "c8cca8bb", "idx": 20, "filename": "c8cca8bb201d40e3bb5a6f0010f46aa8.glb", "name": "Yellow rose", "category": "educational", "vertices": 28122, "faces": 41895, "size_kb": "2681.8", "preview": "thumbnails/c8cca8bb201d40e3bb5a6f0010f46aa8.png", "status": "REVIEW", "notes": ""}, {"id": "7d07bdc1", "idx": 21, "filename": "7d07bdc17ac247dc8421c2449dcf425b.glb", "name": "［旧横浜正金銀行本店本館］屋上ドームのドルフィン装飾", "category": "educational", "vertices": 828467, "faces": 1165657, "size_kb": "31381.8", "preview": "thumbnails/7d07bdc17ac247dc8421c2449dcf425b.png", "status": "REVIEW", "notes": ""}, {"id": "66394b25", "idx": 22, "filename": "66394b25957e4bb4898a60f7a7c2d122.glb", "name": "Throne", "category": "educational", "vertices": 1289, "faces": 1455, "size_kb": "2326.2", "preview": "thumbnails/66394b25957e4bb4898a60f7a7c2d122.png", "status": "REVIEW", "notes": ""}, {"id": "19a01d44", "idx": 23, "filename": "19a01d44ba494164ab861372ec36a667.glb", "name": "Operation room", "category": "educational", "vertices": 175090, "faces": 326320, "size_kb": "7245.4", "preview": "thumbnails/19a01d44ba494164ab861372ec36a667.png", "status": "REVIEW", "notes": ""}, {"id": "04d9983b", "idx": 24, "filename": "04d9983ba04242fe99182d4506ea0714.glb", "name": "Purple Seashell", "category": "educational", "vertices": 352, "faces": 504, "size_kb": "2782.8", "preview": "thumbnails/04d9983ba04242fe99182d4506ea0714.png", "status": "REVIEW", "notes": ""}, {"id": "7a0c4c6b", "idx": 25, "filename": "7a0c4c6bd5d84f7daf5fcfc5d20516c9.glb", "name": "Renal System", "category": "educational", "vertices": 175798, "faces": 65356, "size_kb": "4201.1", "preview": "thumbnails/7a0c4c6bd5d84f7daf5fcfc5d20516c9.png", "status": "REVIEW", "notes": ""}, {"id": "a840ee96", "idx": 26, "filename": "a840ee964e684993877fafe9f18d343d.glb", "name": "JustBoom Amp Zero Case", "category": "educational", "vertices": 5261, "faces": 6040, "size_kb": "175.1", "preview": "thumbnails/a840ee964e684993877fafe9f18d343d.png", "status": "REVIEW", "notes": ""}, {"id": "f507c336", "idx": 27, "filename": "f507c33668e34d16b9306e8a8350f229.glb", "name": "Bookshelf", "category": "educational", "vertices": 4690, "faces": 3884, "size_kb": "138.3", "preview": "thumbnails/f507c33668e34d16b9306e8a8350f229.png", "status": "REVIEW", "notes": ""}, {"id": "bc377244", "idx": 28, "filename": "bc377244fc5a48499294d3890e6d0e8a.glb", "name": "Textured sword", "category": "educational", "vertices": 1403, "faces": 1982, "size_kb": "2245.5", "preview": "thumbnails/bc377244fc5a48499294d3890e6d0e8a.png", "status": "REVIEW", "notes": ""}, {"id": "5a3b7ba7", "idx": 29, "filename": "5a3b7ba7b639427ea970ccca90553aab.glb", "name": "Large tree log", "category": "educational", "vertices": 459, "faces": 765, "size_kb": "4096.0", "preview": "thumbnails/5a3b7ba7b639427ea970ccca90553aab.png", "status": "REVIEW", "notes": ""}, {"id": "5ed9dbe3", "idx": 30, "filename": "5ed9dbe3d248407fb09d7959b3f13eb4.glb", "name": "lungs_blendShape (1)", "category": "educational", "vertices": 18446, "faces": 22088, "size_kb": "620.4", "preview": "thumbnails/5ed9dbe3d248407fb09d7959b3f13eb4.png", "status": "REVIEW", "notes": ""}, {"id": "4581bf09", "idx": 31, "filename": "4581bf090daa400a81156eef3936a981.glb", "name": "[Public Test Scan] Apollo 10 Capsule", "category": "educational", "vertices": 27029, "faces": 41717, "size_kb": "3186.1", "preview": "thumbnails/4581bf090daa400a81156eef3936a981.png", "status": "REVIEW", "notes": ""}, {"id": "2067e9dd", "idx": 32, "filename": "2067e9ddb55d41a5a09d450a6bc5aec3.glb", "name": "3D Garbage & Tow Trucks", "category": "educational", "vertices": 7659, "faces": 4392, "size_kb": "5693.3", "preview": "thumbnails/2067e9ddb55d41a5a09d450a6bc5aec3.png", "status": "REVIEW", "notes": ""}, {"id": "7e7f7c24", "idx": 33, "filename": "7e7f7c2442a748079a0d610d0bac5aa0.glb", "name": "Unusual Vending Machine", "category": "educational", "vertices": 2429, "faces": 3064, "size_kb": "1241.5", "preview": "thumbnails/7e7f7c2442a748079a0d610d0bac5aa0.png", "status": "REVIEW", "notes": ""}, {"id": "c82e2a19", "idx": 34, "filename": "c82e2a19e37542619ce05741382af551.glb", "name": "MechanicalDetail07 PBR Material", "category": "educational", "vertices": 296, "faces": 148, "size_kb": "290.5", "preview": "thumbnails/c82e2a19e37542619ce05741382af551.png", "status": "REVIEW", "notes": ""}, {"id": "559b7a2a", "idx": 35, "filename": "559b7a2ae50f426a8993b609d22931ff.glb", "name": "Angiosperm: Koelreuteria allenii (Cornell Univ.)", "category": "educational", "vertices": 103762, "faces": 182730, "size_kb": "5298.1", "preview": "thumbnails/559b7a2ae50f426a8993b609d22931ff.png", "status": "REVIEW", "notes": ""}, {"id": "10728608", "idx": 36, "filename": "1072860880a342cc9017a65823ff5a87.glb", "name": "South Park skeleton", "category": "educational", "vertices": 7959, "faces": 12514, "size_kb": "303.6", "preview": "thumbnails/1072860880a342cc9017a65823ff5a87.png", "status": "REVIEW", "notes": ""}, {"id": "dbee4f8f", "idx": 37, "filename": "dbee4f8f32fd4a96b5a021137dd4e2c6.glb", "name": "Rhinoceros skull", "category": "educational", "vertices": 807319, "faces": 1292398, "size_kb": "30914.8", "preview": "thumbnails/dbee4f8f32fd4a96b5a021137dd4e2c6.png", "status": "REVIEW", "notes": ""}, {"id": "a7f78901", "idx": 38, "filename": "a7f7890116dc48969ee0946942b00f8a.glb", "name": "Repère de Nivellement, Rue de Sévigné", "category": "educational", "vertices": 2813330, "faces": 939908, "size_kb": "68240.9", "preview": "thumbnails/a7f7890116dc48969ee0946942b00f8a.png", "status": "REVIEW", "notes": ""}, {"id": "39e84c34", "idx": 39, "filename": "39e84c34928a47a38a60cfdcbf22f60e.glb", "name": "ROI012-048-01", "category": "educational", "vertices": 362770, "faces": 560968, "size_kb": "13660.3", "preview": "thumbnails/39e84c34928a47a38a60cfdcbf22f60e.png", "status": "REVIEW", "notes": ""}, {"id": "7499b1c4", "idx": 40, "filename": "7499b1c442554928a7aa2a8900f435d9.glb", "name": "Eucalyptus Seed Pod", "category": "educational", "vertices": 563642, "faces": 893988, "size_kb": "23193.5", "preview": "thumbnails/7499b1c442554928a7aa2a8900f435d9.png", "status": "REVIEW", "notes": ""}, {"id": "dc175a1d", "idx": 41, "filename": "dc175a1d3ba94a27a39e7bc7c8934021.glb", "name": "Ribosome core", "category": "educational", "vertices": 738454, "faces": 1172516, "size_kb": "28164.9", "preview": "thumbnails/dc175a1d3ba94a27a39e7bc7c8934021.png", "status": "REVIEW", "notes": ""}, {"id": "7b7b529b", "idx": 42, "filename": "7b7b529b77ad43c98f7faffeacd63173.glb", "name": "Poldark Pants", "category": "educational", "vertices": 31659, "faces": 56302, "size_kb": "1031.8", "preview": "thumbnails/7b7b529b77ad43c98f7faffeacd63173.png", "status": "REVIEW", "notes": ""}, {"id": "f961db16", "idx": 43, "filename": "f961db16ffa84156a7803a62478a11ca.glb", "name": "LLÀNTIA ÀTICA DE VERNÍS NEGRE", "category": "educational", "vertices": 56740, "faces": 108843, "size_kb": "3512.0", "preview": "thumbnails/f961db16ffa84156a7803a62478a11ca.png", "status": "REVIEW", "notes": ""}, {"id": "1280872b", "idx": 44, "filename": "1280872b95da402b8facb13c38fec32f.glb", "name": "Medieval Floor2", "category": "educational", "vertices": 30167, "faces": 59608, "size_kb": "4970.7", "preview": "thumbnails/1280872b95da402b8facb13c38fec32f.png", "status": "REVIEW", "notes": ""}, {"id": "a184f33a", "idx": 45, "filename": "a184f33ab2c24c318f71ac4f4bb0115d.glb", "name": "Updated Mr Vegify (all glitches resolved)", "category": "educational", "vertices": 24450, "faces": 40270, "size_kb": "951.1", "preview": "thumbnails/a184f33ab2c24c318f71ac4f4bb0115d.png", "status": "REVIEW", "notes": ""}, {"id": "12011b23", "idx": 46, "filename": "12011b23135340d98c246b5801bbf7b7.glb", "name": "Christmas flowers", "category": "educational", "vertices": 40775, "faces": 49798, "size_kb": "3167.3", "preview": "thumbnails/12011b23135340d98c246b5801bbf7b7.png", "status": "REVIEW", "notes": ""}, {"id": "6d74da5c", "idx": 47, "filename": "6d74da5c820a4b30b6f6cf05a8b0d1ad.glb", "name": "Birdo JR", "category": "educational", "vertices": 5858, "faces": 7780, "size_kb": "160.8", "preview": "thumbnails/6d74da5c820a4b30b6f6cf05a8b0d1ad.png", "status": "REVIEW", "notes": ""}, {"id": "4662b518", "idx": 48, "filename": "4662b5183a2a43919823ee3f3b71dea6.glb", "name": "Precipitation possible", "category": "educational", "vertices": 105580, "faces": 192446, "size_kb": "4319.0", "preview": "thumbnails/4662b5183a2a43919823ee3f3b71dea6.png", "status": "REVIEW", "notes": ""}, {"id": "df521ec7", "idx": 49, "filename": "df521ec775294f6cac7406d9bdcf1b70.glb", "name": "Diorama_project", "category": "educational", "vertices": 7035, "faces": 7270, "size_kb": "25864.3", "preview": "thumbnails/df521ec775294f6cac7406d9bdcf1b70.png", "status": "REVIEW", "notes": ""}, {"id": "13b1bf0c", "idx": 50, "filename": "13b1bf0cc3d84730a52a5af63dba6ca3.glb", "name": "Kaladesh Servo", "category": "educational", "vertices": 537783, "faces": 872032, "size_kb": "30551.0", "preview": "thumbnails/13b1bf0cc3d84730a52a5af63dba6ca3.png", "status": "REVIEW", "notes": ""}, {"id": "c26e20eb", "idx": 51, "filename": "c26e20eb514747e39413eae35e4b2c88.glb", "name": "External Light", "category": "educational", "vertices": 16243, "faces": 20564, "size_kb": "2659.3", "preview": "thumbnails/c26e20eb514747e39413eae35e4b2c88.png", "status": "REVIEW", "notes": ""}, {"id": "2509e000", "idx": 52, "filename": "2509e00082b047c4809080ad835b3c60.glb", "name": "Vase - RealityScan", "category": "educational", "vertices": 594247, "faces": 739344, "size_kb": "22147.8", "preview": "thumbnails/2509e00082b047c4809080ad835b3c60.png", "status": "REVIEW", "notes": ""}, {"id": "acedcaa5", "idx": 53, "filename": "acedcaa52310448288b0669e01e23de5.glb", "name": "Spyglass", "category": "educational", "vertices": 3675, "faces": 6752, "size_kb": "4805.5", "preview": "thumbnails/acedcaa52310448288b0669e01e23de5.png", "status": "REVIEW", "notes": ""}, {"id": "607dc7e1", "idx": 54, "filename": "607dc7e18cb04f3fbeb169078e3ea87a.glb", "name": "HL-103 Bone Labret, Hot Springs Village, Alaska", "category": "educational", "vertices": 5041, "faces": 9724, "size_kb": "1163.9", "preview": "thumbnails/607dc7e18cb04f3fbeb169078e3ea87a.png", "status": "REVIEW", "notes": ""}, {"id": "9ed2b9c9", "idx": 55, "filename": "9ed2b9c9f146440b935a9934f967b517.glb", "name": "WW2 - City Scene", "category": "educational", "vertices": 535200, "faces": 429192, "size_kb": "56878.9", "preview": "thumbnails/9ed2b9c9f146440b935a9934f967b517.png", "status": "REVIEW", "notes": ""}, {"id": "2ed42c95", "idx": 56, "filename": "2ed42c9531a4487eb804b99d46e2a77c.glb", "name": "C199 Gargaliani: Ordhines", "category": "educational", "vertices": 2091, "faces": 4000, "size_kb": "340.0", "preview": "thumbnails/2ed42c9531a4487eb804b99d46e2a77c.png", "status": "REVIEW", "notes": ""}, {"id": "79728f04", "idx": 57, "filename": "79728f048e854e2db32eee6c267ea622.glb", "name": "Moon brother pony", "category": "educational", "vertices": 19797, "faces": 38282, "size_kb": "1244.6", "preview": "thumbnails/79728f048e854e2db32eee6c267ea622.png", "status": "REVIEW", "notes": ""}, {"id": "5cc26838", "idx": 58, "filename": "5cc268386ce345a8be9be077c0cb4c8c.glb", "name": "De_Inferno", "category": "educational", "vertices": 59390, "faces": 43404, "size_kb": "1670.2", "preview": "thumbnails/5cc268386ce345a8be9be077c0cb4c8c.png", "status": "REVIEW", "notes": ""}, {"id": "bf4fa1e5", "idx": 59, "filename": "bf4fa1e548bb4b178941eb0f588010de.glb", "name": "Anubis Head", "category": "educational", "vertices": 204768, "faces": 286124, "size_kb": "8754.7", "preview": "thumbnails/bf4fa1e548bb4b178941eb0f588010de.png", "status": "REVIEW", "notes": ""}, {"id": "66b40aab", "idx": 60, "filename": "66b40aabfe7447128fbe4126530e7e96.glb", "name": "Flask", "category": "educational", "vertices": 2886, "faces": 3262, "size_kb": "2882.4", "preview": "thumbnails/66b40aabfe7447128fbe4126530e7e96.png", "status": "REVIEW", "notes": ""}, {"id": "3ea57658", "idx": 61, "filename": "3ea576589cf0490bb76ee3282a3b0e31.glb", "name": "Mars Rover by Jonathan", "category": "educational", "vertices": 6933, "faces": 11448, "size_kb": "271.1", "preview": "thumbnails/3ea576589cf0490bb76ee3282a3b0e31.png", "status": "REVIEW", "notes": ""}, {"id": "63ecc2ab", "idx": 62, "filename": "63ecc2ab01cc482d8c92fc51e1d3d871.glb", "name": "Table", "category": "educational", "vertices": 100, "faces": 50, "size_kb": "4.0", "preview": "thumbnails/63ecc2ab01cc482d8c92fc51e1d3d871.png", "status": "REVIEW", "notes": ""}, {"id": "5c70c390", "idx": 63, "filename": "5c70c390a8624e35beb4b4361bec2ea7.glb", "name": "Moon_Hu_Sketchfab Final", "category": "educational", "vertices": 188306, "faces": 186476, "size_kb": "5864.7", "preview": "thumbnails/5c70c390a8624e35beb4b4361bec2ea7.png", "status": "REVIEW", "notes": ""}, {"id": "9fefc200", "idx": 64, "filename": "9fefc20019924865a378260c98e9e133.glb", "name": "Espada Katana.", "category": "educational", "vertices": 955, "faces": 748, "size_kb": "602.6", "preview": "thumbnails/9fefc20019924865a378260c98e9e133.png", "status": "REVIEW", "notes": ""}, {"id": "5b624376", "idx": 65, "filename": "5b6243762d2b4c3bbe69d132780e38b4.glb", "name": "Cat Plaza", "category": "educational", "vertices": 2440, "faces": 3206, "size_kb": "138.3", "preview": "thumbnails/5b6243762d2b4c3bbe69d132780e38b4.png", "status": "REVIEW", "notes": ""}, {"id": "70596c95", "idx": 66, "filename": "70596c9524f9481bb48e6d39c7534f1f.glb", "name": "Mini Vehicle", "category": "educational", "vertices": 3945, "faces": 1324, "size_kb": "767.6", "preview": "thumbnails/70596c9524f9481bb48e6d39c7534f1f.png", "status": "REVIEW", "notes": ""}, {"id": "5d09e71a", "idx": 67, "filename": "5d09e71a3c664f8bbdcb43427a591dee.glb", "name": "tower", "category": "educational", "vertices": 900028, "faces": 300491, "size_kb": "22092.7", "preview": "thumbnails/5d09e71a3c664f8bbdcb43427a591dee.png", "status": "REVIEW", "notes": ""}, {"id": "56fddf35", "idx": 68, "filename": "56fddf35a2e2428197e3a8d4860ec7b5.glb", "name": "Roman Coin", "category": "educational", "vertices": 113046, "faces": 199971, "size_kb": "6159.1", "preview": "thumbnails/56fddf35a2e2428197e3a8d4860ec7b5.png", "status": "REVIEW", "notes": ""}, {"id": "2854a512", "idx": 69, "filename": "2854a5128d2e44a993a93848c3d4ca70.glb", "name": "microughs_Streptobacillusmoniliformis_ALS", "category": "educational", "vertices": 94048, "faces": 170938, "size_kb": "3841.7", "preview": "thumbnails/2854a5128d2e44a993a93848c3d4ca70.png", "status": "REVIEW", "notes": ""}, {"id": "addfea2c", "idx": 70, "filename": "addfea2c1142463e814105108e521039.glb", "name": "BB Yamato (New Year Mode)", "category": "educational", "vertices": 249936, "faces": 347742, "size_kb": "20125.2", "preview": "thumbnails/addfea2c1142463e814105108e521039.png", "status": "REVIEW", "notes": ""}, {"id": "2a62fca2", "idx": 71, "filename": "2a62fca27766483ea15ee651383c160a.glb", "name": "Crystalpave Pure White", "category": "educational", "vertices": 48, "faces": 24, "size_kb": "132.0", "preview": "thumbnails/2a62fca27766483ea15ee651383c160a.png", "status": "REVIEW", "notes": ""}, {"id": "89c98e7f", "idx": 72, "filename": "89c98e7fdbd546cabd8b97ae48e1637a.glb", "name": "Siargao Island, Philippines 3d GEBCO_2019", "category": "educational", "vertices": 8784, "faces": 17182, "size_kb": "751.8", "preview": "thumbnails/89c98e7fdbd546cabd8b97ae48e1637a.png", "status": "REVIEW", "notes": ""}, {"id": "ce53df6c", "idx": 73, "filename": "ce53df6c36024a8ea12ccbf79a0a34a0.glb", "name": "Fortress Bastion Training Room", "category": "educational", "vertices": 2634763, "faces": 880512, "size_kb": "63160.0", "preview": "thumbnails/ce53df6c36024a8ea12ccbf79a0a34a0.png", "status": "REVIEW", "notes": ""}, {"id": "b04fc40b", "idx": 74, "filename": "b04fc40bacdf46fa9cd0f5d1c864be24.glb", "name": "Gear/Lever", "category": "educational", "vertices": 1048, "faces": 860, "size_kb": "2670.6", "preview": "thumbnails/b04fc40bacdf46fa9cd0f5d1c864be24.png", "status": "REVIEW", "notes": ""}, {"id": "1abf6124", "idx": 75, "filename": "1abf6124c37a4cf3a5bd6edd5012725f.glb", "name": "COVID-19 Infection, Stay Home!", "category": "educational", "vertices": 2839382, "faces": 1403056, "size_kb": "71900.6", "preview": "thumbnails/1abf6124c37a4cf3a5bd6edd5012725f.png", "status": "REVIEW", "notes": ""}, {"id": "30256f20", "idx": 76, "filename": "30256f207c5e4500befb371273ab6878.glb", "name": "Candle Holder", "category": "educational", "vertices": 249391, "faces": 466484, "size_kb": "14724.0", "preview": "thumbnails/30256f207c5e4500befb371273ab6878.png", "status": "REVIEW", "notes": ""}, {"id": "4b516ca7", "idx": 77, "filename": "4b516ca7f743448484550b4da91cf286.glb", "name": "Wine & Cups Table - Lowpoly", "category": "educational", "vertices": 6698, "faces": 11090, "size_kb": "262.4", "preview": "thumbnails/4b516ca7f743448484550b4da91cf286.png", "status": "REVIEW", "notes": ""}, {"id": "3f4d6c67", "idx": 78, "filename": "3f4d6c67f9b74923866d88a4ef8f58b1.glb", "name": "Sorex caecutiens (Laxmann's shrew)", "category": "educational", "vertices": 393893, "faces": 414104, "size_kb": "12547.2", "preview": "thumbnails/3f4d6c67f9b74923866d88a4ef8f58b1.png", "status": "REVIEW", "notes": ""}, {"id": "6048cca2", "idx": 79, "filename": "6048cca2dd4c4815b0527e162e9fde69.glb", "name": "Skull Male 72yo", "category": "educational", "vertices": 321697, "faces": 501248, "size_kb": "12158.2", "preview": "thumbnails/6048cca2dd4c4815b0527e162e9fde69.png", "status": "REVIEW", "notes": ""}, {"id": "8e9386da", "idx": 80, "filename": "8e9386da0d5440c5b8af50b7d0660372.glb", "name": "Instructional Chess - Knight", "category": "educational", "vertices": 919013, "faces": 1314060, "size_kb": "33349.7", "preview": "thumbnails/8e9386da0d5440c5b8af50b7d0660372.png", "status": "REVIEW", "notes": ""}, {"id": "0aa5a95f", "idx": 81, "filename": "0aa5a95f7a6a4f899ef2e5fa7dc53b66.glb", "name": "S8 Squelch Fighter", "category": "educational", "vertices": 40382, "faces": 33572, "size_kb": "1184.2", "preview": "thumbnails/0aa5a95f7a6a4f899ef2e5fa7dc53b66.png", "status": "REVIEW", "notes": ""}, {"id": "9bab5801", "idx": 82, "filename": "9bab5801149548e0a2080f7881cd2083.glb", "name": "Dragon In Water 2", "category": "educational", "vertices": 160, "faces": 136, "size_kb": "9.9", "preview": "thumbnails/9bab5801149548e0a2080f7881cd2083.png", "status": "REVIEW", "notes": ""}, {"id": "3b73e11f", "idx": 83, "filename": "3b73e11ff7324a6484a17daec8fdac2c.glb", "name": "rubik's cube v1", "category": "educational", "vertices": 240, "faces": 192, "size_kb": "8.5", "preview": "thumbnails/3b73e11ff7324a6484a17daec8fdac2c.png", "status": "REVIEW", "notes": ""}, {"id": "533950a2", "idx": 84, "filename": "533950a2bb7b4dd2b5fae2f83d963fb6.glb", "name": "Cap de Silè, Museu de Lleida", "category": "educational", "vertices": 135443, "faces": 200000, "size_kb": "8342.5", "preview": "thumbnails/533950a2bb7b4dd2b5fae2f83d963fb6.png", "status": "REVIEW", "notes": ""}, {"id": "dd084f2a", "idx": 85, "filename": "dd084f2ab9b24b76b05be83c4477dfe5.glb", "name": "C849 Phourkaria/Pergari", "category": "educational", "vertices": 2360, "faces": 4060, "size_kb": "664.0", "preview": "thumbnails/dd084f2ab9b24b76b05be83c4477dfe5.png", "status": "REVIEW", "notes": ""}, {"id": "6146fc3d", "idx": 86, "filename": "6146fc3d5fe04abc9f7111386a25e6df.glb", "name": "Parque Linear - Trecho 1 - Setor B", "category": "educational", "vertices": 826279, "faces": 625112, "size_kb": "25567.8", "preview": "thumbnails/6146fc3d5fe04abc9f7111386a25e6df.png", "status": "REVIEW", "notes": ""}, {"id": "aa26039f", "idx": 87, "filename": "aa26039fca994ad89137a789e9ea0dd5.glb", "name": "UNSC Savannah. Halo Frigate Free High Poly Model", "category": "educational", "vertices": 161165, "faces": 212080, "size_kb": "5634.2", "preview": "thumbnails/aa26039fca994ad89137a789e9ea0dd5.png", "status": "REVIEW", "notes": ""}, {"id": "4fa748c9", "idx": 88, "filename": "4fa748c9c7994602aab585c3446352ab.glb", "name": "Haw Par Villa Inner Gate", "category": "educational", "vertices": 85660, "faces": 124324, "size_kb": "5222.5", "preview": "thumbnails/4fa748c9c7994602aab585c3446352ab.png", "status": "REVIEW", "notes": ""}, {"id": "40131703", "idx": 89, "filename": "40131703c536482698d80c215b02f207.glb", "name": "Playtime", "category": "educational", "vertices": 58843, "faces": 116450, "size_kb": "3133.4", "preview": "thumbnails/40131703c536482698d80c215b02f207.png", "status": "REVIEW", "notes": ""}, {"id": "524c9e3f", "idx": 90, "filename": "524c9e3f3d0a492b878665bf4342e17a.glb", "name": "Mount Rushmore", "category": "educational", "vertices": 83869, "faces": 135270, "size_kb": "7121.5", "preview": "thumbnails/524c9e3f3d0a492b878665bf4342e17a.png", "status": "REVIEW", "notes": ""}, {"id": "bb1d0d19", "idx": 91, "filename": "bb1d0d1910854b9dab5602ee0723bf10.glb", "name": "Reproducción: Vaso ovoide", "category": "educational", "vertices": 21920, "faces": 42428, "size_kb": "2936.3", "preview": "thumbnails/bb1d0d1910854b9dab5602ee0723bf10.png", "status": "REVIEW", "notes": ""}, {"id": "2fa5e80f", "idx": 92, "filename": "2fa5e80feb2140a795d1f98e7909e238.glb", "name": "Rounded edges railing", "category": "educational", "vertices": 632, "faces": 624, "size_kb": "15.7", "preview": "thumbnails/2fa5e80feb2140a795d1f98e7909e238.png", "status": "REVIEW", "notes": ""}, {"id": "4800e31e", "idx": 93, "filename": "4800e31e40584ccb9652954e1a60ef7d.glb", "name": "Foot of a bowl - PG.2807.1397", "category": "educational", "vertices": 54868, "faces": 104403, "size_kb": "3425.2", "preview": "thumbnails/4800e31e40584ccb9652954e1a60ef7d.png", "status": "REVIEW", "notes": ""}, {"id": "97244910", "idx": 94, "filename": "972449109d6845e68a473667a25c11b3.glb", "name": "Portrait for DIG 2783 Assignment 9", "category": "educational", "vertices": 24, "faces": 12, "size_kb": "5.8", "preview": "thumbnails/972449109d6845e68a473667a25c11b3.png", "status": "REVIEW", "notes": ""}, {"id": "85e43288", "idx": 95, "filename": "85e43288cd4f432cb1c6ade8423cc445.glb", "name": "Calculator", "category": "educational", "vertices": 48041, "faces": 53817, "size_kb": "2115.2", "preview": "thumbnails/85e43288cd4f432cb1c6ade8423cc445.png", "status": "REVIEW", "notes": ""}, {"id": "f3471d6d", "idx": 96, "filename": "f3471d6d2e4447fc8b5cf837c963c1de.glb", "name": "Low Poly Water", "category": "educational", "vertices": 4056, "faces": 1352, "size_kb": "96.3", "preview": "thumbnails/f3471d6d2e4447fc8b5cf837c963c1de.png", "status": "REVIEW", "notes": ""}, {"id": "5b4b0db9", "idx": 97, "filename": "5b4b0db9f68f4383b0a9d644ed61676d.glb", "name": "Sculpture20180407170611", "category": "educational", "vertices": 2044, "faces": 3472, "size_kb": "6548.4", "preview": "thumbnails/5b4b0db9f68f4383b0a9d644ed61676d.png", "status": "REVIEW", "notes": ""}, {"id": "b9ff3130", "idx": 98, "filename": "b9ff31305049415ca6c891da9683c711.glb", "name": "The Flying Circus", "category": "educational", "vertices": 22376, "faces": 22910, "size_kb": "1890.3", "preview": "thumbnails/b9ff31305049415ca6c891da9683c711.png", "status": "REVIEW", "notes": ""}, {"id": "c1de8b60", "idx": 99, "filename": "c1de8b60baa3484094d6f2b881ad749f.glb", "name": "C1225 Eretria: Acropolis", "category": "educational", "vertices": 13259, "faces": 10145, "size_kb": "1638.2", "preview": "thumbnails/c1de8b60baa3484094d6f2b881ad749f.png", "status": "REVIEW", "notes": ""}, {"id": "4bc72588", "idx": 100, "filename": "4bc72588c38c4373a54940b0ff97f168.glb", "name": "[ORPHAN] 4bc72588", "category": "unknown", "vertices": 0, "faces": 0, "size_kb": "0.0", "preview": "", "status": "REMOVE", "notes": "No DB entry"}];
+
+function filterGallery() {
+  const search = document.getElementById('search').value.toLowerCase().trim();
+  const cat = document.getElementById('catFilter').value;
+  const status = document.getElementById('statusFilter').value;
+  const cards = document.querySelectorAll('.card');
+  let count = 0;
+  cards.forEach((card, i) => {
+    const name = card.dataset.name;
+    const id = card.dataset.id;
+    const tCat = card.dataset.cat;
+    const tStatus = card.dataset.status;
+    const matchSearch = !search || name.includes(search) || id.includes(search);
+    const matchCat = !cat || tCat === cat;
+    const matchStatus = !status || tStatus === status;
+    const show = matchSearch && matchCat && matchStatus;
+    card.style.display = show ? '' : 'none';
+    if (show) count++;
+  });
+  document.getElementById('count').textContent = count + ' / ' + templates.length;
+  updateStats(count);
+}
+
+function updateStats(count) {
+  const cats = {};
+  const statusCounts = {KEEP: 0, REMOVE: 0, REVIEW: 0};
+  document.querySelectorAll('.card').forEach(c => {
+    if (c.style.display !== 'none') {
+      cats[c.dataset.cat] = (cats[c.dataset.cat] || 0) + 1;
+      if (c.dataset.status in statusCounts) statusCounts[c.dataset.status]++;
+    }
+  });
+  let html = `<strong>${count}</strong> template đang hiển thị &middot; `;
+  html += Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `${k}: ${v}`).join(' &middot; ');
+  html += `<br>Trạng th&aacute;i: `;
+  for (const [s, n] of Object.entries(statusCounts)) {
+    html += `<span style="color:${s==='KEEP'?'#4caf50':s==='REMOVE'?'#f44336':'#ff9800'}">${s}: ${n}</span> `;
+  }
+  html += `<br>Tổng cộng: <strong>${templates.length}</strong> template, `;
+  html += `<strong>${templates.filter(t => t.preview).length}</strong> preview ảnh`;
+  document.getElementById('stats').innerHTML = html;
+}
+
+filterGallery();
+</script>
+</body>
+</html>

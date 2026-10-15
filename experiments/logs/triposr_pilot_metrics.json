@@ -1,0 +1,15 @@
+{
+  "experiment": "triposr_pilot",
+  "script_version": "1.0.0",
+  "timestamp": "2026-07-23T04:47:21Z",
+  "n_selected": 10,
+  "n_succeeded": 10,
+  "n_failed": 0,
+  "avg_inference_time_s": 20.4,
+  "std_inference_time_s": 11.1,
+  "avg_vram_peak_mb": 2494.0,
+  "max_vram_peak_mb": 2494.0,
+  "avg_vertices": 103121,
+  "avg_faces": 206063,
+  "avg_glb_size_mb": 3.84
+}

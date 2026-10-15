@@ -1,0 +1,13 @@
+object_id,view,success,vertices,faces,size_bytes
+Dog,front,True,70124,140212,2805552
+Dog,left,True,47414,94812,1897396
+Dog,back,True,54526,109024,2181728
+Dog,right,True,47414,94812,1897396
+AMBERLIGHT_UP_W,front,True,54218,108436,2169744
+AMBERLIGHT_UP_W,left,True,49701,99444,1989568
+AMBERLIGHT_UP_W,back,True,125182,250364,5008308
+AMBERLIGHT_UP_W,right,True,49701,99444,1989568
+Razer_BlackWidow_Ultimate_2014_Mechanical_Gaming_Keyboard,front,True,32348,64692,1294896
+Razer_BlackWidow_Ultimate_2014_Mechanical_Gaming_Keyboard,left,True,36406,72800,1457116
+Razer_BlackWidow_Ultimate_2014_Mechanical_Gaming_Keyboard,back,True,125182,250364,5008308
+Razer_BlackWidow_Ultimate_2014_Mechanical_Gaming_Keyboard,right,True,36406,72800,1457116

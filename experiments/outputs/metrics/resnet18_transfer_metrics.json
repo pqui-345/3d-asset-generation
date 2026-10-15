@@ -1,0 +1,21 @@
+{
+  "experiment": "resnet18_transfer",
+  "accuracy": 1.0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "confusion_matrix": [
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "classes": [
+    "footwear",
+    "household"
+  ]
+}

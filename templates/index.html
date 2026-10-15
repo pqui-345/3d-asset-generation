@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3DGame Asset Generator - AI 3D Reconstruction Platform</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <div class="brand-logo">3D</div>
+                    <div class="brand-name">3DGame</div>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item active" data-view="home">
+                        <a href="#home"><i class="fa-solid fa-house"></i><span>Trang Chủ</span></a>
+                    </li>
+                    <li class="nav-item" data-view="upload">
+                        <a href="#generate"><i class="fa-solid fa-cube"></i><span>Tạo Mô Hình 3D</span></a>
+                    </li>
+                    <li class="nav-item" data-view="library">
+                        <a href="#library"><i class="fa-solid fa-database"></i><span>Thư Viện Asset</span></a>
+                    </li>
+                    <li class="nav-item" data-view="templates">
+                        <a href="#templates"><i class="fa-solid fa-shapes"></i><span>Thư Viện Khuôn Mẫu</span></a>
+                    </li>
+                    <li class="nav-item" data-view="classroom">
+                        <a href="#classroom"><i class="fa-solid fa-graduation-cap"></i><span>Game Demo</span></a>
+                    </li>
+                    <li class="nav-item" data-view="about">
+                        <a href="#about"><i class="fa-solid fa-circle-info"></i><span>Giới Thiệu</span></a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-footer">
+                <p class="mb-1"><i class="fa-solid fa-microchip text-gradient-cyan me-1"></i> AI 3D Reconstruction</p>
+                <p class="mb-0 text-muted" style="font-size: 0.75rem;">Niên Luận © 2026</p>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            
+            <!-- SECTION 1: HOME VIEW -->
+            <section id="view-home" class="view-section active">
+                <div class="container-fluid">
+                    <div class="hero-section">
+                        <div class="hero-text">
+                            <div class="hero-badge">
+                                <i class="fa-solid fa-bolt"></i>
+                                <span>NEXT-GEN AI 3D ENGINE</span>
+                            </div>
+                            <h1 class="hero-title">Ứng Dụng AI Sinh Mô Hình 3D Tự Động</h1>
+                            <p class="hero-subtitle">
+                                Tự động chuyển đổi ảnh chụp vật thể đơn lẻ thành tài nguyên 3D chất lượng cao (GLB, OBJ, PLY) phục vụ tức thì cho trò chơi giáo dục trực quan và học tập tương tác.
+                            </p>
+                            <div class="d-flex gap-3">
+                                <button class="btn-glow" onclick="switchView('upload')">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Thử Nghiệm Ngay
+                                </button>
+                                <button class="btn-outline" onclick="switchView('library')">
+                                    <i class="fa-solid fa-images"></i> Xem Thư Viện
+                                </button>
+                            </div>
+                        </div>
+                        <div class="hero-3d-container">
+                            <div id="hero-canvas-container" class="hero-3d-viewport"></div>
+                            <div class="viewport-overlay">
+                                <i class="fa-solid fa-arrows-spin fa-spin text-gradient-purple"></i>
+                                <span>Mô hình 3D minh họa xoay tự động</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: UPLOAD VIEW -->
+            <section id="view-upload" class="view-section">
+                <div class="container-fluid">
+                    <div class="text-center mb-5">
+                        <h2 class="section-title">Sinh Tài Nguyên 3D AI</h2>
+                        <p class="section-subtitle">Upload 1-6 ảnh vật thể từ nhiều góc độ để AI tạo mô hình 3D chân thực nhất</p>
+                    </div>
+                    
+                    <div class="upload-wrapper">
+                        <div class="glass-card">
+                            <form id="upload-form">
+                                <!-- Multi-image drop zone -->
+                                <div class="drag-area" id="drag-drop-area">
+                                    <div class="upload-icon">
+                                        <i class="fa-solid fa-images"></i>
+                                    </div>
+                                    <h3>Kéo & thả nhiều ảnh vào đây</h3>
+                                    <p>Upload từ 1 đến 6 ảnh vật thể từ các góc khác nhau (trước, sau, trái, phải, trên, dưới)</p>
+                                    <p class="text-muted mb-3" style="font-size:0.8rem;">
+                                        <i class="fa-solid fa-circle-info me-1"></i>
+                                        Ảnh越多, mô hình 3D càng chân thực. Hỗ trợ JPG, PNG.
+                                    </p>
+                                    <span class="btn-outline py-2 px-4">Chọn ảnh từ máy tính</span>
+                                    <input type="file" id="file-input" name="files" accept=".png, .jpg, .jpeg" multiple hidden>
+                                </div>
+                                
+                                <!-- Image slots grid -->
+                                <div class="image-slots-grid" id="image-slots-grid" style="display:none;">
+                                    <div class="slots-header">
+                                        <h5 class="text-gradient-cyan" style="font-size:1rem;">
+                                            <i class="fa-solid fa-layer-group me-2"></i>Ảnh đã chọn (<span id="slot-count">0</span>/6)
+                                        </h5>
+                                        <button type="button" class="btn btn-sm btn-outline-danger" id="btn-clear-all" style="font-size:0.75rem;">
+                                            <i class="fa-solid fa-trash me-1"></i> Xóa tất cả
+                                        </button>
+                                    </div>
+                                    <div class="slots-container" id="slots-container"></div>
+                                    <p class="text-muted mt-2" style="font-size:0.75rem;">
+                                        <i class="fa-solid fa-lightbulb text-warning me-1"></i>
+                                        Ảnh đầu tiên sẽ dùng làm texture chính. Ảnh bổ sung giúp AI ước tính chiều sâu tốt hơn.
+                                    </p>
+                                </div>
+                                
+                                <div class="upload-input-group mt-4">
+                                    <label class="form-label text-muted" style="font-size: 0.85rem;">Tên Vật Thể (Object Name)</label>
+                                    <input type="text" id="asset-name-input" class="form-control-custom" placeholder="Ví dụ: Quả Táo, Robot, Xe Đồ Chơi..." required>
+                                </div>
+                                
+                                <div class="upload-input-group mt-3">
+                                    <label class="form-label text-muted" style="font-size: 0.85rem;">Phương Pháp Sinh 3D & Kiểu Dáng (3D Generation Method)</label>
+                                    <select id="asset-style-input" class="form-control-custom" style="background: rgba(18, 22, 38, 0.85); color: #fff; cursor: pointer;">
+                                        <option value="local_triposr_gpu" selected>Tái tạo AI Ngoại tuyến (TripoSR GPU)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="text-center mt-5">
+                                    <button type="submit" class="btn-glow py-3 px-5" id="btn-submit-generate" disabled>
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i> KHỞI TẠO MÔ HÌNH 3D (AI GENERATE)
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: AI PROCESSING VIEW -->
+            <section id="view-processing" class="view-section">
+                <div class="container-fluid">
+                    <div class="text-center mb-5">
+                        <h2 class="section-title">Đang Xử Lý AI...</h2>
+                        <p class="section-subtitle">Mạng thần kinh nhân tạo đang phân tích hình học, ước lượng chiều sâu và dựng Texture</p>
+                    </div>
+                    
+                    <div class="processing-container glass-card">
+                        <div class="text-center mb-4">
+                            <h4 class="font-orbitron text-gradient-cyan mb-2" id="processing-percentage">Tiến độ: 0%</h4>
+                            <div class="ai-progress-bar-wrapper">
+                                <div class="ai-progress-bar" id="processing-bar"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- 7 Step checklist -->
+                        <div class="stepper">
+                            <!-- Step 1 -->
+                            <div class="step-card pending" id="step-1">
+                                <div class="step-left">
+                                    <div class="step-number">1</div>
+                                    <div class="step-info">
+                                        <h4>Tải Ảnh Lên Hệ Thống</h4>
+                                        <p>Đang tải ảnh gốc chất lượng cao lên máy chủ xử lý...</p>
+                                    </div>
+                                </div>
+                                <div class="step-status" id="step-status-1">
+                                    <span class="step-wait"><i class="fa-regular fa-clock"></i></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 2 -->
+                            <div class="step-card pending" id="step-2">
+                                <div class="step-left">
+                                    <div class="step-number">2</div>
+                                    <div class="step-info">
+                                        <h4>Tách Nền Bằng AI (Background Removal)</h4>
+                                        <p>Đang tách cô lập vật thể bằng AI rembg, làm trong suốt phông nền...</p>
+                                    </div>
+                                </div>
+                                <div class="step-status" id="step-status-2">
+                                    <span class="step-wait"><i class="fa-regular fa-clock"></i></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 3 -->
+                            <div class="step-card pending" id="step-3">
+                                <div class="step-left">
+                                    <div class="step-number">3</div>
+                                    <div class="step-info">
+                                        <h4>Nhận Diện Biên Vật Thể (Object Detection)</h4>
+                                        <p>Phân tích biên độ pixel, căn lề và định vị tâm vật thể...</p>
+                                    </div>
+                                </div>
+                                <div class="step-status" id="step-status-3">
+                                    <span class="step-wait"><i class="fa-regular fa-clock"></i></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 4 -->
+                            <div class="step-card pending" id="step-4">
+                                <div class="step-left">
+                                    <div class="step-number">4</div>
+                                    <div class="step-info">
+                                        <h4>Tính Toán Khối Hình Học 3D (Geometry Generation)</h4>
+                                        <p>Tái tạo lưới 3D, phân bổ các đỉnh (Vertices) và mặt phẳng (Faces)...</p>
+                                    </div>
+                                </div>
+                                <div class="step-status" id="step-status-4">
+                                    <span class="step-wait"><i class="fa-regular fa-clock"></i></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 5 -->
+                            <div class="step-card pending" id="step-5">
+                                <div class="step-left">
+                                    <div class="step-number">5</div>
+                                    <div class="step-info">
+                                        <h4>Áp Bản Đồ Vân Bề Mặt (Texture Projection & UV Mapping)</h4>
+                                        <p>Trải phẳng tọa độ UV, chiếu dán màu sắc chính xác lên lưới hình học...</p>
+                                    </div>
+                                </div>
+                                <div class="step-status" id="step-status-5">
+                                    <span class="step-wait"><i class="fa-regular fa-clock"></i></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 6 -->
+                            <div class="step-card pending" id="step-6">
+                                <div class="step-left">
+                                    <div class="step-number">6</div>
+                                    <div class="step-info">
+                                        <h4>Tối Ưu Hóa Trọng Lượng Lưới (Mesh Optimization)</h4>
+                                        <p>Nén đa giác thừa, làm mịn bề mặt và chuyển đổi định dạng xuất...</p>
+                                    </div>
+                                </div>
+                                <div class="step-status" id="step-status-6">
+                                    <span class="step-wait"><i class="fa-regular fa-clock"></i></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 7 -->
+                            <div class="step-card pending" id="step-7">
+                                <div class="step-left">
+                                    <div class="step-number">7</div>
+                                    <div class="step-info">
+                                        <h4>Lưu Mô Hình Vào CSDL</h4>
+                                        <p>Đăng ký tệp lưu trữ, cập nhật thông tin đo lường vào bảng assets...</p>
+                                    </div>
+                                </div>
+                                <div class="step-status" id="step-status-7">
+                                    <span class="step-wait"><i class="fa-regular fa-clock"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: RESULT VIEW — 3D Asset Workspace -->
+            <section id="view-result" class="view-section">
+                <div class="workspace">
+                    <!-- Top Bar -->
+                    <div class="ws-topbar">
+                        <div class="ws-topbar-left">
+                            <div class="ws-brand"><div class="brand-logo">3D</div></div>
+                            <span class="ws-asset-name" id="res-asset-name">Asset 3D</span>
+                            <span class="ws-status"><i class="fa-solid fa-circle-check"></i> Da tao</span>
+                        </div>
+                        <div class="ws-topbar-right">
+                            <button class="ws-topbar-btn" id="ws-btn-save" title="Luu trang thai editor"><i class="fa-regular fa-floppy-disk"></i> <span>Luu</span></button>
+                            <button class="ws-topbar-btn primary" id="ws-btn-export" title="Xuat GLB"><i class="fa-solid fa-file-export"></i> <span>Xuat GLB</span></button>
+                        </div>
+                    </div>
+
+                    <!-- Main Workspace Body -->
+                    <div class="ws-body">
+                        <!-- Left Rail (icon buttons) -->
+                        <div class="ws-rail-left" id="ws-rail-left">
+                            <button class="ws-rail-btn active" data-panel="input" title="Anh dau vao"><i class="fa-solid fa-image"></i></button>
+                            <button class="ws-rail-btn" data-panel="info" title="Thong tin mo hinh"><i class="fa-solid fa-circle-info"></i></button>
+                            <button class="ws-rail-btn" data-panel="downloads" title="Tai xuong"><i class="fa-solid fa-download"></i></button>
+                        </div>
+
+                        <!-- Left Drawer (slides out from rail) -->
+                        <div class="ws-drawer-left" id="ws-drawer-left">
+                            <div class="ws-drawer-header">
+                                <h4 id="ws-drawer-title">Anh dau vao</h4>
+                                <button class="ws-drawer-close" id="ws-drawer-close"><i class="fa-solid fa-xmark"></i></button>
+                            </div>
+                            <div class="ws-drawer-content" id="ws-drawer-content">
+                                <!-- Content injected by JS based on active panel -->
+                            </div>
+                        </div>
+
+                        <!-- Center Canvas -->
+                        <div class="ws-canvas-wrap">
+                            <div class="ws-canvas" id="ws-canvas">
+                                <div id="result-canvas-container"></div>
+                                <div class="canvas-loading" id="viewer-loader">
+                                    <div class="spinner-glow"></div>
+                                    <span class="loading-text">Dang tai model 3D...</span>
+                                </div>
+                                <div class="canvas-error" id="viewer-error" style="display:none;">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                    <p class="canvas-error-title">Khong the tai mo hinh 3D</p>
+                                    <p class="canvas-error-detail" id="viewer-error-detail">Loi tai file GLB tu server.</p>
+                                    <button class="ws-topbar-btn" id="btn-retry-load"><i class="fa-solid fa-rotate-right"></i> Thu lai</button>
+                                </div>
+                            </div>
+                            <!-- Bottom Toolbar (floating inside canvas) -->
+                            <div class="ws-bottom-toolbar">
+                                <div class="ws-bt-group">
+                                    <button class="ws-bt active" id="btn-tool-rotate" title="Tu xoay"><i class="fa-solid fa-arrows-spin"></i></button>
+                                    <button class="ws-bt" id="btn-tool-pan" title="Pan"><i class="fa-solid fa-up-down-left-right"></i></button>
+                                    <button class="ws-bt" id="btn-tool-grid" title="Grid"><i class="fa-solid fa-border-all"></i></button>
+                                    <button class="ws-bt" id="btn-tool-reset" title="Reset camera"><i class="fa-solid fa-arrows-rotate"></i></button>
+                                    <button class="ws-bt" id="btn-tool-fullscreen" title="Full screen"><i class="fa-solid fa-maximize"></i></button>
+                                </div>
+                                <div class="ws-bt-sep"></div>
+                                <div class="ws-bt-group">
+                                    <button class="ws-bt cam-btn" data-view="front" title="Front"><i class="fa-solid fa-arrow-up"></i></button>
+                                    <button class="ws-bt cam-btn" data-view="left" title="Left"><i class="fa-solid fa-arrow-left"></i></button>
+                                    <button class="ws-bt cam-btn" data-view="right" title="Right"><i class="fa-solid fa-arrow-right"></i></button>
+                                    <button class="ws-bt cam-btn" data-view="top" title="Top"><i class="fa-solid fa-arrow-down"></i></button>
+                                    <button class="ws-bt cam-btn" data-view="perspective" title="Perspective"><i class="fa-solid fa-cube"></i></button>
+                                </div>
+                                <div class="ws-bt-sep"></div>
+                                <div class="ws-bt-group">
+                                    <button class="ws-bt gizmo-btn active" data-gizmo="translate" title="Translate"><i class="fa-solid fa-arrows-up-down-left-right"></i></button>
+                                    <button class="ws-bt gizmo-btn" data-gizmo="rotate" title="Rotate"><i class="fa-solid fa-rotate"></i></button>
+                                    <button class="ws-bt gizmo-btn" data-gizmo="scale" title="Scale"><i class="fa-solid fa-expand"></i></button>
+                                    <button class="ws-bt gizmo-btn" data-gizmo="disable" title="Tat gizmo"><i class="fa-solid fa-hand"></i></button>
+                                </div>
+                                <div class="ws-bt-sep"></div>
+                                <div class="ws-bt-group">
+                                    <button class="ws-bt" id="gizmo-btn-floor" title="Dat day"><i class="fa-solid fa-down-long"></i></button>
+                                    <button class="ws-bt" id="gizmo-btn-reset" title="Reset model"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                                </div>
+                            </div>
+                            <span class="orient-hint" id="orient-hint"></span>
+                        </div>
+
+                        <!-- Right Panel (Editor) -->
+                        <div class="ws-panel-right" id="ws-panel-right">
+                            <div id="asset-editor-panel"></div>
+                        </div>
+                        <button class="ws-panel-toggle" id="ws-panel-toggle" title="Thu gon panel"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Backdrop for drawer -->
+                <div id="editor-backdrop" class="editor-backdrop" onclick="var ed=AppState.editor||window.editor;if(ed)ed.closeDrawer()"></div>
+            </section>
+            
+            <!-- SECTION 5: LIBRARY VIEW -->
+            <section id="view-library" class="view-section">
+                <div class="container-fluid">
+                    <div class="text-center mb-5">
+                        <h2 class="section-title">Thư Viện Dữ Liệu</h2>
+                        <p class="section-subtitle">Kho lưu trữ toàn bộ các mô hình 3D được kiến tạo bởi AI phục vụ cho các bài giảng</p>
+                    </div>
+                    
+                    <div class="library-filters glass-card py-3 px-4 mb-4">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="library-search" class="form-control-custom m-0" placeholder="Tìm kiếm theo tên vật thể...">
+                        </div>
+                        <select class="filter-select" id="library-sort">
+                            <option value="newest">Mới nhất trước</option>
+                            <option value="oldest">Cũ nhất trước</option>
+                            <option value="name_asc">Tên vật thể (A-Z)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Grid container -->
+                    <div class="library-grid" id="library-assets-grid">
+                        <!-- Dynamic library cards injected here -->
+                    </div>
+                    
+                    <div class="text-center mt-5 d-none" id="library-empty-state">
+                        <div class="text-muted mb-3"><i class="fa-solid fa-folder-open" style="font-size: 4rem;"></i></div>
+                        <h3>Chưa có mô hình nào được tạo</h3>
+                        <p class="text-muted">Nhấn nút bên dưới để tiến hành tạo mô hình 3D đầu tiên từ ảnh chụp của bạn.</p>
+                        <button class="btn-glow mt-2" onclick="switchView('upload')"><i class="fa-solid fa-plus"></i> Tạo Asset Ngay</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5b: TEMPLATE LIBRARY VIEW -->
+            <section id="view-templates" class="view-section">
+                <div class="container-fluid">
+                    <div class="text-center mb-5">
+                        <h2 class="section-title">Thư Viện Khuôn Mẫu 3D</h2>
+                        <p class="section-subtitle">84 khuôn mẫu đời sống & giáo dục được chọn lọc, sử dụng làm nền tảng cho quá trình tạo mô hình 3D từ ảnh</p>
+                    </div>
+
+                    <div class="library-filters glass-card py-3 px-4 mb-4">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="templates-search" class="form-control-custom m-0" placeholder="Tìm kiếm khuôn mẫu (ghế, bàn, quả táo...)">
+                        </div>
+                        <select class="filter-select" id="templates-sort">
+                            <option value="name_asc">Tên (A-Z)</option>
+                            <option value="size_asc">Kích thước (Nhỏ trước)</option>
+                            <option value="size_desc">Kích thước (Lớn trước)</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted" id="templates-count">Đang tải...</span>
+                        <button class="btn-outline" onclick="loadTemplates()"><i class="fa-solid fa-rotate me-1"></i> Làm mới</button>
+                    </div>
+
+                    <div class="library-grid" id="templates-grid">
+                        <div class="text-center w-100 p-5">
+                            <div class="spinner-border text-primary" role="status"></div>
+                            <p class="mt-2 text-muted">Đang tải thư viện khuôn mẫu...</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-5 d-none" id="templates-empty-state">
+                        <div class="text-muted mb-3"><i class="fa-solid fa-box-open" style="font-size: 4rem;"></i></div>
+                        <h3>Không tìm thấy khuôn mẫu phù hợp</h3>
+                        <p class="text-muted">Thử tìm kiếm với từ khóa khác.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: EDUCATIONAL GAME DEMO CLASSROOM VIEW -->
+            <section id="view-classroom" class="view-section">
+                <div class="container-fluid">
+                    <div class="text-center mb-5">
+                        <h2 class="section-title">Lớp Học Tương Tác 3D</h2>
+                        <p class="section-subtitle">Nhập mô hình 3D do AI tạo trực tiếp vào phòng thí nghiệm ảo để học sinh tương tác học tập trực quan</p>
+                    </div>
+                    
+                    <div class="classroom-layout">
+                        <!-- Left Panel: Classroom Scene 3D Canvas -->
+                        <div class="glass-card classroom-canvas-card">
+                            <div id="classroom-canvas-container" class="classroom-canvas"></div>
+                            
+                            <!-- Floating Sandbox control desk -->
+                            <div class="classroom-controls-overlay" id="classroom-gizmo-controls" style="display: none;">
+                                <h5>Bảng Điều Khiển Vật Thể</h5>
+                                <p id="gizmo-object-name" class="text-gradient-purple font-weight-bold mb-3">Tên: Apple Model</p>
+                                
+                                <!-- Translate X, Y, Z -->
+                                <div class="control-item">
+                                    <label>Tọa độ vị trí (Move Z-Axis / Chiều ngang)</label>
+                                    <input type="range" id="gizmo-pos-x" min="-2.0" max="2.0" step="0.05" value="0" class="slider-custom">
+                                </div>
+                                <div class="control-item">
+                                    <label>Tọa độ độ cao (Height Y-Axis / Nâng lên)</label>
+                                    <input type="range" id="gizmo-pos-y" min="0.0" max="1.5" step="0.02" value="0.5" class="slider-custom">
+                                </div>
+                                
+                                <!-- Rotate X, Y, Z -->
+                                <div class="control-item mt-3">
+                                    <label>Xoay trục ngang (Rotate X-Axis)</label>
+                                    <input type="range" id="gizmo-rot-x" min="0" max="6.28" step="0.05" value="0" class="slider-custom">
+                                </div>
+                                <div class="control-item">
+                                    <label>Xoay trục đứng (Rotate Y-Axis)</label>
+                                    <input type="range" id="gizmo-rot-y" min="0" max="6.28" step="0.05" value="0" class="slider-custom">
+                                </div>
+                                
+                                <!-- Scale Slider -->
+                                <div class="control-item mt-3">
+                                    <label>Tỷ lệ thu phóng (Scale Model)</label>
+                                    <input type="range" id="gizmo-scale" min="0.1" max="3.0" step="0.05" value="1.0" class="slider-custom">
+                                </div>
+                                
+                                <div class="mt-3 d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-danger w-50 py-1" id="btn-classroom-remove-model" style="font-size: 0.75rem;"><i class="fa-solid fa-trash me-1"></i> Gỡ Bỏ</button>
+                                    <button class="btn btn-sm btn-outline-primary w-50 py-1" id="btn-classroom-reset-gizmos" style="font-size: 0.75rem;"><i class="fa-solid fa-rotate-left me-1"></i> Reset</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Canvas Loading Overlay -->
+                            <div class="canvas-loading" id="classroom-loader">
+                                <div class="spinner-glow"></div>
+                                <span class="loading-text">Đang tải phòng học ảo 3D...</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Panel: Selection sidebar for generated assets -->
+                        <div class="glass-card asset-selection-card">
+                            <h4 class="font-orbitron text-gradient-cyan mb-2" style="font-size: 1.15rem;">Chọn Vật Thể Vào Lớp</h4>
+                            <p class="text-muted" style="font-size: 0.85rem;">Danh sách mô hình sinh bởi AI có sẵn trong thư viện để đưa lên bàn giảng dạy:</p>
+                            
+                            <div class="asset-selection-list" id="classroom-assets-select-list">
+                                <!-- Dynamic asset options go here -->
+                            </div>
+                            
+                            <div class="text-center mt-3 d-none" id="classroom-empty-assets">
+                                <p class="text-muted" style="font-size: 0.85rem;">Không tìm thấy vật thể nào. Hãy tạo mô hình trước!</p>
+                                <button class="btn btn-sm btn-primary w-100 mt-1 py-2" onclick="switchView('upload')"><i class="fa-solid fa-plus me-1"></i> Đi tạo vật thể</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 7: ABOUT VIEW -->
+            <section id="view-about" class="view-section">
+                <div class="container-fluid">
+                    <div class="text-center mb-5">
+                        <h2 class="section-title">Thông Tin Đề Tài</h2>
+                        <p class="section-subtitle">Ứng dụng trí tuệ nhân tạo tái cấu trúc không gian ba chiều từ một ảnh chụp đơn lẻ</p>
+                    </div>
+                    
+                    <div class="about-grid">
+                        <div class="glass-card">
+                            <h3 class="font-orbitron text-gradient-cyan mb-3">Mục Tiêu Đề Tài</h3>
+                            <p style="line-height:1.7; text-align:justify;" class="mb-4">
+                                Trong giáo dục hiện đại, trò chơi giáo dục và các ứng dụng học tập thực tế ảo đóng vai trò cực kỳ quan trọng giúp học sinh tiếp thu kiến thức một cách hứng thú và ghi nhớ sâu sắc hơn. Tuy nhiên, rào cản lớn nhất đối với các giáo viên và lập trình viên game giáo dục là <strong>chi phí và thời gian tạo tài nguyên 3D (3D Assets)</strong>. Việc thiết kế thủ công một mô hình 3D yêu cầu kỹ năng đồ họa 3D phức tạp, máy tính cấu hình mạnh và hàng giờ, hàng ngày làm việc.
+                            </p>
+                            <p style="line-height:1.7; text-align:justify;" class="mb-4">
+                                Đề tài <strong>"Ứng dụng AI vào đời sống - Tự động tạo mô hình 3D cho trò chơi giáo dục bằng ảnh chụp một vật thể"</strong> giải quyết triệt để rào cản này bằng cách tự động hóa hoàn toàn quy trình tạo mô hình. Giáo viên hoặc học sinh chỉ cần dùng điện thoại chụp ảnh một vật thể ngoài đời thực (như quả cam, con robot đồ chơi, hộp bút...), hệ thống AI sẽ ngay lập tức tách nền và tái tạo lại mô hình 3D của vật thể đó với đầy đủ vân phủ bề mặt (Texture), sẵn sàng xuất ra để đưa vào môi trường game giáo dục trực quan trong vài giây!
+                            </p>
+                            
+                            <h3 class="font-orbitron text-gradient-purple mt-5 mb-3">Ứng dụng trong Giáo Dục</h3>
+                            <ul style="line-height:1.8; text-align:justify;">
+                                <li><strong>Học tập trực quan sinh động</strong>: Giáo viên tự chuẩn bị học cụ 3D trực tiếp từ ảnh chụp thực tế phục vụ các môn Sinh học, Lịch sử, Địa lý.</li>
+                                <li><strong>Trò chơi hóa bài học (Gamification)</strong>: Học sinh chụp ảnh đồ chơi, đồ vật xung quanh để tự đưa làm nhân vật, chướng ngại vật hay kho báu trong game giáo dục của riêng mình.</li>
+                                <li><strong>Học tập sáng tạo</strong>: Kích thích trí tưởng tượng của học sinh bằng cách cho thấy nét vẽ hay đất nặn của mình biến thành vật thể 3D chân thực bay lượn trên màn hình máy tính.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="glass-card d-flex flex-column justify-content-between">
+                            <div>
+                                <h4 class="font-orbitron text-gradient-purple mb-4">Sơ đồ Pipeline AI</h4>
+                                
+                                <div class="pipeline-diagram">
+                                    <div class="pipeline-step">
+                                        <div class="pipeline-icon"><i class="fa-solid fa-camera"></i></div>
+                                        <div class="pipeline-info">
+                                            <h5>1. Chụp ảnh & Tải lên</h5>
+                                            <p>Chụp ảnh một vật thể đơn lẻ dưới góc nhìn nghiêng lý tưởng.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pipeline-step">
+                                        <div class="pipeline-icon"><i class="fa-solid fa-scissors"></i></div>
+                                        <div class="pipeline-info">
+                                            <h5>2. Tách nền AI (Rembg)</h5>
+                                            <p>Tự động tách biệt vật thể chính, biến vùng nền thành trong suốt hoàn toàn.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pipeline-step">
+                                        <div class="pipeline-icon"><i class="fa-solid fa-brain"></i></div>
+                                        <div class="pipeline-info">
+                                            <h5>3. Tái dựng hình học AI</h5>
+                                            <p>Sử dụng TripoSR ước tính phân phối chiều sâu vật lý và mật độ điểm.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pipeline-step">
+                                        <div class="pipeline-icon"><i class="fa-solid fa-file-export"></i></div>
+                                        <div class="pipeline-info">
+                                            <h5>4. Xuất bản Assets</h5>
+                                            <p>Đóng gói tệp 3D nén tối ưu (GLB, OBJ, PLY) sẵn sàng tích hợp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Three.js Library & Loaders CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/TransformControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/MTLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/exporters/GLTFExporter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/geometries/DecalGeometry.js"></script>
+    
+    <!-- Custom Application Javascript -->
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/asset_editor.js"></script>
+</body>
+</html>

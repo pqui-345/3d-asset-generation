@@ -1,0 +1,11 @@
+﻿object_id,status,inference_time_s,vram_before_mb,vram_peak_mb,vram_after_mb,vertices,faces,glb_size_mb,obj_size_mb,preview_ok,input_quality,error
+BAGEL_WITH_CHEESE,success,52.3,1678.0,2494.0,1687.0,120002,239825,4.32,9.22,True,PASS,
+Dog,success,18.2,1687.0,2494.0,1687.0,120007,239783,4.32,9.23,True,PASS,
+Racoon,success,15.9,1687.0,2494.0,1687.0,115001,229812,4.6,12.64,True,PASS,
+Razer_BlackWidow_Ultimate_2014_Mechanical_Gaming_Keyboard,success,15.5,1687.0,2494.0,1687.0,101529,202847,4.06,11.06,True,PASS,
+Hefty_Waste_Basket_Decorative_Bronze_85_liter,success,19.5,1687.0,2494.0,1687.0,120001,239807,4.32,9.2,True,PASS,
+Connect_4_Launchers,success,11.8,1687.0,2494.0,1687.0,36105,72121,1.44,3.89,True,PASS,
+Timberland_Womens_Earthkeepers_Classic_Unlined_Boat_Shoe,success,12.7,1687.0,2494.0,1687.0,58571,117038,2.34,6.35,True,PASS,
+Cole_Hardware_School_Bell_Solid_Brass_38,success,17.1,1687.0,2494.0,1687.0,120004,239799,4.32,9.21,True,PASS,
+Down_To_Earth_Orchid_Pot_Ceramic_Lime,success,23.7,1687.0,2494.0,1687.0,120004,239730,4.32,9.23,True,PASS,
+LEGO_Star_Wars_Advent_Calendar,success,17.6,1687.0,2494.0,1687.0,119989,239871,4.32,9.23,True,PASS,

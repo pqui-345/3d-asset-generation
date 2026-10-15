@@ -1,0 +1,33 @@
+experiment:
+  name: classical_baselines
+  seed: 42
+  output_dir: experiments/outputs
+
+data:
+  manifest: experiments/data/manifests/dataset_manifest.csv
+  split: experiments/data/manifests/split_summary.csv
+  render_size: 224
+  views: [front]
+  n_classes: ~
+
+hog:
+  orientations: 9
+  pixels_per_cell: [8, 8]
+  cells_per_block: [2, 2]
+  block_norm: L2-Hys
+
+svm:
+  kernel: rbf
+  C: 1.0
+  gamma: scale
+  class_weight: balanced
+
+rf:
+  n_estimators: 100
+  max_depth: ~
+  min_samples_split: 2
+  min_samples_leaf: 1
+
+eval:
+  cv_folds: 3
+  metrics: [accuracy, precision, recall, f1]

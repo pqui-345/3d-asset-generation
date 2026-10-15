@@ -1,0 +1,28 @@
+experiment:
+  name: resnet18_transfer
+  seed: 42
+  output_dir: experiments/outputs
+
+model:
+  architecture: resnet18
+  pretrained: true
+  freeze_backbone: true
+  dropout: 0.3
+
+data:
+  manifest: experiments/data/manifests/dataset_manifest.csv
+  split: experiments/data/manifests/split_summary.csv
+  input_size: 224
+  batch_size: 32
+  num_workers: 0
+  views: [front]
+
+train:
+  epochs: 30
+  lr: 0.001
+  weight_decay: 0.0001
+  scheduler: cosine
+  early_stop_patience: 7
+
+eval:
+  metrics: [accuracy, precision, recall, f1, conf_matrix]

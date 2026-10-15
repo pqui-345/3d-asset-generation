@@ -1,0 +1,20 @@
+.env
+venv/
+__pycache__/
+*.pyc
+static/uploads/*
+!static/uploads/.gitkeep
+static/models/*
+!static/models/.gitkeep
+*.log
+
+# Trọng số mô hình dung lượng lớn (>1GB)
+*.ckpt
+*.pt
+*.pth
+services/weights/*.ckpt
+
+# Cấu hình IDE & hệ thống
+.vscode/
+.idea/
+*.swp

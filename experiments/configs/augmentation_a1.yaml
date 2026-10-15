@@ -1,0 +1,36 @@
+experiment:
+  name: augmentation_a1_light
+  seed: 42
+  output_dir: experiments/outputs
+
+data:
+  manifest: experiments/data/manifests/dataset_manifest.csv
+  split: experiments/data/manifests/split_summary.csv
+  input_size: 224
+  batch_size: 32
+  num_workers: 0
+  views: [front]
+
+augmentation:
+  train:
+    resize: [224, 224]
+    random_horizontal_flip: 0.5
+    random_rotation: 10
+    color_jitter: [0.1, 0.1, 0.1, 0.05]
+    totensor: true
+    normalize: true
+  test:
+    resize: [224, 224]
+    totensor: true
+    normalize: true
+
+model:
+  architecture: resnet18
+  pretrained: true
+  freeze_backbone: true
+
+train:
+  epochs: 30
+  lr: 0.001
+  weight_decay: 0.0001
+  scheduler: cosine

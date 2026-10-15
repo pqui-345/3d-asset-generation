@@ -1,0 +1,27 @@
+experiment:
+  name: triposr_evaluation
+  seed: 42
+  output_dir: experiments/outputs
+
+data:
+  manifest: experiments/data/manifests/dataset_manifest.csv
+  split: experiments/data/manifests/split_summary.csv
+  image_dir: experiments/data/images
+  views: [front]
+
+triposr:
+  checkpoint: services/weights/model.ckpt
+  config: services/weights/config.yaml
+  device: cuda
+  fp16: false
+  warmup_runs: 3
+  sample_limit: 20
+
+eval:
+  metrics: [inference_time, vertices, faces, file_size]
+  cold_start_log: true
+  warm_start_log: true
+
+output:
+  log_file: experiments/outputs/logs/triposr_eval.csv
+  metrics_file: experiments/outputs/metrics/triposr_metrics.json
