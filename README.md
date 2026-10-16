@@ -258,16 +258,3 @@ This research pipeline builds upon open-source foundations:
 
 ---
 
-## Citation
-
-If you find this codebase or benchmark methodology useful in your research, please cite:
-
-```bibtex
-@article{triposr_educational_3d_2026,
-  title   = {Automated Single-Image 3D Asset Reconstruction for Interactive Educational Games: A Feasibility and Geometric Evaluation on Constrained Hardware},
-  author  = {Tran, Phu-Qui},
-  journal = {Preprint / Research Archive},
-  year    = {2026},
-  url     = {https://github.com/pqui-345/3d-asset-generation}
-}
-```
