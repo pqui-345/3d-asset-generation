@@ -20,7 +20,6 @@ An end-to-end, inference-only pipeline that reconstructs interactive, watertight
 - [Experimental Benchmark Summary](#experimental-benchmark-summary)
 - [Repository Structure](#repository-structure)
 - [Third-Party Licenses & Acknowledgments](#third-party-licenses--acknowledgments)
-- [Citation](#citation)
 
 ---
 
